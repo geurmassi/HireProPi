@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui.RegisterFXMLController">
+   <children>
+      <StackPane>
+         <children>
+            <AnchorPane fx:id="SignUpForm" prefHeight="718.0" prefWidth="826.0">
+               <children>
+                  <AnchorPane layoutX="15.0" layoutY="10.0" prefHeight="650.0" prefWidth="806.0">
+                     <children>
+                        <Label layoutX="229.0" layoutY="14.0" text="Sign Up Acount">
+                           <font>
+                              <Font name="Cambria Bold Italic" size="49.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="signupNom" layoutX="202.0" layoutY="112.0" prefHeight="26.0" prefWidth="175.0" promptText="Last Name" />
+                        <Label layoutX="24.0" layoutY="109.0" text="LastName :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="SignUpPassword" layoutX="201.0" layoutY="331.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter your Password" />
+                        <Button fx:id="SignUpBtn" layoutX="250.0" layoutY="529.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="253.0" text="Sign Up">
+                           <effect>
+                              <Reflection />
+                           </effect>
+                        </Button>
+                        <Label layoutX="339.0" layoutY="575.0" text="Sign In Account">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="signupLog" layoutX="204.0" layoutY="605.0" mnemonicParsing="false" onAction="#loginBtn" prefHeight="30.0" prefWidth="358.0" text="Login Account" />
+                        <Label layoutX="399.0" layoutY="104.0" prefHeight="40.0" prefWidth="140.0" text="FirstName :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="signupPrenom" layoutX="561.0" layoutY="112.0" prefHeight="26.0" prefWidth="175.0" promptText="First Name" />
+                        <Label layoutX="28.0" layoutY="167.0" text="Birthday :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="signupDateN" layoutX="204.0" layoutY="169.0" promptText="Birthday" />
+                        <Label layoutX="397.0" layoutY="166.0" text="Mobile phone :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="SignUpTel" layoutX="562.0" layoutY="169.0" prefHeight="26.0" prefWidth="175.0" promptText="mobile phone" />
+                        <Label layoutX="22.0" layoutY="227.0" prefHeight="23.0" prefWidth="94.0" text="Adress :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="SignUpAdress" layoutX="204.0" layoutY="225.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter Your Adress" />
+                        <Label layoutX="24.0" layoutY="333.0" text="Password :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="22.0" layoutY="278.0" text="Email :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="SignUpEmail" layoutX="202.0" layoutY="276.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter Your Email" />
+                        <Label layoutX="18.0" layoutY="383.0" text="Confirm Password :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="SignUpConfirmPassword" layoutX="227.0" layoutY="381.0" prefHeight="26.0" prefWidth="511.0" promptText="Password" />
+                        <Label layoutX="14.0" layoutY="429.0" text="Role :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="combox" layoutX="84.0" layoutY="433.0" prefWidth="150.0" promptText="Selected Role">
+                           <effect>
+                              <Glow />
+                           </effect></ComboBox>
+                        <Label layoutX="94.0" layoutY="520.0" />
+                        <TextField fx:id="captcha_filed" layoutX="479.0" layoutY="478.0" prefHeight="26.0" prefWidth="261.0" promptText="Please Enter the code" />
+                        <Label layoutX="315.0" layoutY="428.0" text="Captcha code :">
+                           <font>
+                              <Font name="Bell MT" size="25.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="captchaFiled" layoutX="478.0" layoutY="432.0" prefHeight="26.0" prefWidth="262.0" promptText="Please Enter the code" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</StackPane>
