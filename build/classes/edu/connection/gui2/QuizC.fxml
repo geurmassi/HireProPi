@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui2.QuizCController">
+   <children>
+      <TitledPane id="FT-cloud" alignment="CENTER" animated="false" contentDisplay="CENTER" graphicTextGap="8.0" layoutX="26.0" layoutY="33.0" prefHeight="721.0" prefWidth="568.0" text="Business Intelligence basic Quiz :">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="566.0">
+               <children>
+                  <TitledPane fx:id="FTQ1" layoutX="43.0" layoutY="14.0" prefHeight="162.0" prefWidth="489.0" text="What is Business Intelligence (BI)?">
+                     
+                  </TitledPane>
+                  <TitledPane fx:id="FTQ2" layoutX="43.0" layoutY="183.0" prefHeight="162.0" prefWidth="443.0" text="Which of the following is not a component of Business Intelligence?">
+                     
+                  </TitledPane>
+                  <TitledPane fx:id="FTQ3" layoutX="43.0" layoutY="353.0" prefHeight="164.0" prefWidth="492.0" text="What is the main goal of Business Intelligence?">
+                     
+                  </TitledPane>
+                  <TitledPane fx:id="FTQ4" layoutX="43.0" layoutY="535.0" prefHeight="154.0" prefWidth="490.0" text="What is a data warehouse in Business Intelligence?">
+                     
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+         </content>
+        
+      </TitledPane>
+      <CheckBox id="FT-R14" fx:id="FT_R14" layoutX="128.0" layoutY="208.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="4-A method of analyzing market trendsb) A process of reporting financial statementsc) A technology-driven approach to data analysis and reportingd) A technique for managing human resources" />
+      <CheckBox id="FT-R11" fx:id="FT_R11" layoutX="128.0" layoutY="114.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="1-A method of analyzing market trends" />
+      <CheckBox id="FT-R13" fx:id="FT_R13" layoutX="128.0" layoutY="178.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="3-A  technology-driven approach to data analysis and reporting" />
+      <CheckBox id="FT-R12" fx:id="FT_R12" layoutX="128.0" layoutY="147.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="2-A process of reporting financial statements" />
+      <CheckBox id="FT-R24" fx:id="FT_R24" layoutX="127.0" layoutY="385.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="4-Data mining" />
+      <CheckBox id="FT-R21" fx:id="FT_R21" layoutX="127.0" layoutY="291.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="1-Data visualization" />
+      <CheckBox id="FT-R23" fx:id="FT_R23" layoutX="127.0" layoutY="355.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="3-Data mining" />
+      <CheckBox id="FT-R22" fx:id="FT_R22" layoutX="127.0" layoutY="324.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="2-Data extraction" />
+      <CheckBox id="FT-R34" fx:id="FT_R34" layoutX="127.0" layoutY="553.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="4-To develop marketing campaigns" />
+      <CheckBox id="FT-R31" fx:id="FT_R31" layoutX="127.0" layoutY="459.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="1-To improve decision-making through data analysis   " />
+      <CheckBox id="FT-R33" fx:id="FT_R33" layoutX="127.0" layoutY="523.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="3-To optimize supply chain management" />
+      <CheckBox id="FT-R32" fx:id="FT_R32" layoutX="127.0" layoutY="492.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="2-To automate business processesc" />
+      <CheckBox id="FT-R44" fx:id="FT_R44" layoutX="127.0" layoutY="726.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="4-A network infrastructure for data transmission" />
+      <CheckBox id="FT-R41" fx:id="FT_R41" layoutX="127.0" layoutY="632.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="1-A physical storage facility for data backups" />
+      <CheckBox id="FT-R43" fx:id="FT_R43" layoutX="127.0" layoutY="696.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="3-A software application for data entry and retrieval" />
+      <CheckBox id="FT-R42" fx:id="FT_R42" layoutX="127.0" layoutY="665.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="367.0" text="2-A database optimized for reporting and analysis" />
+      <Button id="FT-BUTTON" fx:id="FT_BUTTON" layoutX="527.0" layoutY="745.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="82.0" text="Submit">
+         
+      </Button>
+      <Button fx:id="checkAnswerBtn" layoutY="745.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="82.0" text="answers" />
+   </children>
+</AnchorPane>

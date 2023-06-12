@@ -1,0 +1,9 @@
+/* styles.css */
+
+.correct-answer {
+    -fx-background-color: green;
+}
+
+.wrong-answer {
+    -fx-background-color: red;
+}
