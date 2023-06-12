@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author kamel guermassi
+ * @author kamel guermassii
  */
 public class Message {
     private int idMsg;
