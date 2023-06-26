@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.Quiz.StandardTemplateController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.Quiz.BusinessTemplateController">
  <children>
-        <CheckBox fx:id="txtrep1" layoutX="30.0" layoutY="235.0" mnemonicParsing="false" onAction="#txtrep1" prefHeight="47.0" prefWidth="520.0" />
+        <CheckBox fx:id="txtrep1" layoutX="30.0" layoutY="254.0" mnemonicParsing="false" onAction="#txtrep1" prefHeight="48.0" prefWidth="579.0" />
         <Button fx:id="FT_Next" layoutX="245.0" layoutY="747.0" mnemonicParsing="false" onAction="#handleNextQuestion" prefHeight="31.0" prefWidth="67.0" text="Next" />
     <Button fx:id="PrintPDF" layoutX="12.0" layoutY="763.0" mnemonicParsing="false" onAction="#PrintPDF" text="Print PDF" />
 
 
         <Button fx:id="FT_Submit" layoutX="527.0" layoutY="765.0" mnemonicParsing="false" onAction="#FT_Submit" text="Submit" />
-      <CheckBox fx:id="txtrep4" layoutX="30.0" layoutY="457.0" mnemonicParsing="false" onAction="#txtrep4" prefHeight="47.0" prefWidth="520.0" />
-      <CheckBox fx:id="txtrep3" layoutX="30.0" layoutY="386.0" mnemonicParsing="false" onAction="#txtrep3" prefHeight="47.0" prefWidth="520.0" />
+      <CheckBox fx:id="txtrep4" layoutX="30.0" layoutY="446.0" mnemonicParsing="false" onAction="#txtrep4" prefHeight="47.0" prefWidth="520.0" />
+      <CheckBox fx:id="txtrep3" layoutX="30.0" layoutY="382.0" mnemonicParsing="false" onAction="#txtrep3" prefHeight="47.0" prefWidth="520.0" />
       <CheckBox fx:id="txtrep2" layoutX="30.0" layoutY="320.0" mnemonicParsing="false" onAction="#txtrep2" prefHeight="47.0" prefWidth="520.0" />
       <ProgressBar fx:id="progressBar" layoutX="42.0" layoutY="609.0" onDragDetected="#updateProgressBar" prefHeight="48.0" prefWidth="387.0" progress="0.0" />
       <TextArea fx:id="pourcentage" layoutX="465.0" layoutY="609.0" onDragDetected="#pourcentage" prefHeight="48.0" prefWidth="22.0" />
-      <TilePane layoutX="16.0" layoutY="316.0" prefHeight="56.0" prefWidth="593.0" />
+      <TilePane layoutX="23.0" layoutY="316.0" prefHeight="56.0" prefWidth="593.0" />
       <TitledPane fx:id="question" animated="false" layoutX="15.0" layoutY="59.0" prefHeight="31.0" prefWidth="593.0" text="untitled">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />

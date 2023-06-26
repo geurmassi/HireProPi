@@ -28,9 +28,9 @@ public class NewFXMain extends Application {
                 thisStage.close();
                 
                 FXMLLoader fxmlLoader;
-                fxmlLoader = new FXMLLoader(getClass().getResource("/edu/connection/Mobile/QuizC.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource("/edu/connection/Mobile/QuizCC.fxml"));
                 Parent quizRoot = fxmlLoader.load();
-                QuizCController controller = fxmlLoader.getController(); // Get the controller instance
+                QuizCCController controller = fxmlLoader.getController(); // Get the controller instance
                 Stage quizStage = new Stage();
                 quizStage.setScene(new Scene(quizRoot));
                 quizStage.setTitle("Quiz");

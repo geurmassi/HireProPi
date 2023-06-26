@@ -28,10 +28,9 @@ import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.TilePane;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
-public class StandardTemplateController implements Initializable {
+public class BusinessTemplateController implements Initializable {
 private BigDecimal decimalValue;
     @FXML
     private TitledPane question;
@@ -119,7 +118,7 @@ public void initialize(URL url, ResourceBundle rb) {
             preparedStatement = connection.prepareStatement("SELECT question, reponse_1, reponse_2, reponse_3, reponse_4, rep_vrai " +
                     "FROM question " +
                     "JOIN test ON question.idTest = test.idTest " +
-                    "WHERE test.idTest = 1");
+                    "WHERE test.idTest = 4");
             resultSet = preparedStatement.executeQuery();
 
             // Move to the first question in the result set and update UI
@@ -332,19 +331,19 @@ private void PrintPDF(ActionEvent event) {
             PDPage page = new PDPage();
             document.addPage(page);
             
-            PDPageContentStream contentStream = new PDPageContentStream(document, page);
-            contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-            contentStream.beginText();
-            contentStream.newLineAtOffset(100, 700);
-            
-            // Add the action history to the PDF document
-            for (String action : actionHistory) {
-                contentStream.showText(action);
-                contentStream.newLine();
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+                
+                // Add the action history to the PDF document
+                for (String action : actionHistory) {
+                    contentStream.showText(action);
+                    contentStream.newLine();
+                }
+                
+                contentStream.endText();
             }
-            
-            contentStream.endText();
-            contentStream.close();
             
             document.save("C:/Users/Dell/Documents/NetBeansProjects/HirePro/output.pdf");
         }

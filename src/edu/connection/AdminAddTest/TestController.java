@@ -55,6 +55,8 @@ public class TestController implements Initializable {
     private Button ModifierQuiz;
     @FXML
     private Button AddQueston;
+    @FXML
+    private Button AfficheTest;
     
     
 
@@ -354,6 +356,35 @@ private void handleAddQuestion(ActionEvent event) throws IOException {
     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     primaryStage.setScene(addQuestionScene);
     primaryStage.show();
+}
+
+    @FXML
+private void handleAfficheQuestion(ActionEvent event) {
+    Test selectedTest = listeQuizTableview.getSelectionModel().getSelectedItem();
+    if (selectedTest == null) {
+        showAlert(Alert.AlertType.ERROR, "Error", null, "No test selected.");
+        return;
+    }
+
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/edu/connection/AdminAddTest/afficheDetailsFXML.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+
+        Stage stage = new Stage();
+        stage.setTitle("Questions du quiz");
+        stage.setScene(scene);
+        stage.show();
+
+        afficheDetailsController controller = loader.getController();
+        controller.initData(selectedTest); // Pass the selected test to the AfficheQuestionsController
+
+        // Close the current stage (TestController)
+        Stage currentStage = (Stage) listeQuizTableview.getScene().getWindow();
+        currentStage.close();
+    } catch (IOException e) {
+        showAlert(Alert.AlertType.ERROR, "Error", null, "Failed to load quiz questions.");
+    }
 }
 
 

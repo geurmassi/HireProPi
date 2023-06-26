@@ -56,5 +56,10 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Button>
+      <Button fx:id="AfficheTest" layoutX="40.0" layoutY="529.0" mnemonicParsing="false" onAction="#handleAfficheQuestion" prefHeight="53.0" prefWidth="150.0" text="AfficheTest">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

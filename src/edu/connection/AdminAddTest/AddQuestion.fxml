@@ -30,7 +30,7 @@
 
       <Button fx:id="Next" layoutX="848.0" layoutY="14.0" mnemonicParsing="false" onAction="#goNext" prefHeight="46.0" prefWidth="120.0" text="Next" />
       <Button fx:id="Corriger" layoutX="848.0" layoutY="452.0" mnemonicParsing="false" onAction="#corrigerClicked" prefHeight="46.0" prefWidth="120.0" text="Corriger" />
-      <Text layoutX="453.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
+      <Text layoutX="453.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <TextField fx:id="txtrepvrai" layoutX="193.0" layoutY="552.0" prefHeight="33.0" prefWidth="106.0" />
       <Label fx:id="reponse_41" layoutX="38.0" layoutY="549.0" text="reponse_vrai" />
 

@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TitledPane;
 
-public class QuizCController implements Initializable {
+public class QuizCCController implements Initializable {
 
     @FXML
     private TitledPane FTQ1;
