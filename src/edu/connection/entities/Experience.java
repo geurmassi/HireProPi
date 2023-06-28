@@ -8,6 +8,8 @@ package edu.connection.entities;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -22,7 +24,18 @@ public class Experience {
     private String details;
     private int idskills;
     private int idsociete;
+   private Societe societe;
+    private List<Formation> experience;
+   public List<Experience> getFormations(Object experience) {
+    if (experience == null) {
+        experience = new ArrayList<>();
+    }
+    return (List<Experience>) experience;
+}
 
+public void setFormations(List<Formation> experience) {
+    this.experience = experience;
+}
     public Experience() {
     }
 
@@ -112,7 +125,19 @@ public class Experience {
 
     @Override
     public String toString() {
-        return "Experience{" + "idEx=" + idEx + ", titreExp=" + titreExp + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", details=" + details + ", idskills=" + idskills + ", idsociete=" + idsociete + '}';
+        return "Experience{" + "idEx=" + idEx + ", titreExp=" + titreExp + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", details=" + details + ", idskills=" + idskills + ", idsociete=" + idsociete + ",societe="+societe+'}';
+    }
+
+    public void setSociete(Societe societe) {
+       this.societe=societe;
+    }
+
+    public Societe getSociete() {
+        return societe;
+    }
+
+    public Experience get(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    

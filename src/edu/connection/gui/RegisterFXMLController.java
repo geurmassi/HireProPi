@@ -144,6 +144,7 @@ public void register(ActionEvent event) {
                     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     primaryStage.setScene(login);
                     primaryStage.show();
+                      loadProfileScene();
                 }
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
@@ -222,6 +223,26 @@ private void generateNewCaptcha() {
 
     // Update the captcha label in the UI
     captchaFiled.setText(captcha);
+}
+private void loadProfileScene() throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfileFXML.fxml"));
+    Parent profileRoot = loader.load();
+    ProfileController profileController = loader.getController();
+
+    // Pass the values to the ProfileController
+    profileController.setPersonalInformation(
+        signupNom.getText(),
+        signupPrenom.getText(),
+        SignUpAdress.getText(),
+        SignUpTel.getText(),
+        SignUpEmail.getText()
+    );
+
+    // Show the Profile scene
+    Scene profileScene = new Scene(profileRoot);
+    Stage primaryStage = (Stage) SignUpBtn.getScene().getWindow();
+    primaryStage.setScene(profileScene);
+    primaryStage.show();
 }
 
 }

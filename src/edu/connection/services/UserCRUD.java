@@ -5,7 +5,12 @@
  */
 package edu.connection.services;
 
+import edu.connection.entities.Experience;
+import edu.connection.entities.Formation;
 import edu.connection.entities.Role;
+import edu.connection.entities.Skills;
+import edu.connection.entities.Societe;
+import edu.connection.entities.Universite;
 import edu.connection.entities.User;
 import edu.connection.utils.MyConnection;
 import java.sql.Date;
@@ -16,6 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import edu.connection.interfaces.UserCrud;
+import java.time.LocalDate;
 
 /**
  *
@@ -108,7 +114,20 @@ public class UserCRUD implements  UserCrud<User>  {
         System.out.println(ex.getMessage());
     }
     }
-    }
+
+ 
+
+
+
+
+
+ 
+
+
+}
+
+  
+
 
   
 

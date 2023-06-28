@@ -64,7 +64,6 @@ public class LoginFXMLController implements Initializable {
      * Initializes the controller class.
      */
     
-    @FXML
   public void login() {
     AlertMessage alert = new AlertMessage();
     if (login_email.getText().isEmpty() || login_password.getText().isEmpty()) {
@@ -230,8 +229,33 @@ private void updateActifStatus(String email, boolean actif) {
         }
     }
 
-    
+  
 
+
+    @FXML
     
-    
+private void loginBtn(ActionEvent event) {
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilFXML.fxml"));
+        Parent profileRoot = loader.load();
+        ProfileController profileController = loader.getController();
+
+        if (event.getSource() == login_btn) {
+            // Get the logged-in user's email
+            String loginEmail = login_email.getText();
+
+            // Set the personal information in the ProfileController
+            profileController.setPersonalInformation(loginEmail);
+             profileController.setPersonalScolaire(loginEmail);
+               profileController.setPersonalExperience(loginEmail);
+            Scene profileScene = new Scene(profileRoot);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(profileScene);
+            primaryStage.show();
+        }
+    } catch (IOException ex) {
+        Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+}
+
 }

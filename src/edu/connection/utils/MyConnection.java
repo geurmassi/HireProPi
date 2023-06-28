@@ -8,6 +8,7 @@ package edu.connection.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -40,6 +41,10 @@ public class MyConnection {
         instance = new MyConnection();
         }
         return instance ;
+    }
+
+    public Statement createStatement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

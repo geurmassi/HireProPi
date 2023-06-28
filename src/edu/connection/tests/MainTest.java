@@ -49,7 +49,9 @@ public class MainTest {
          U2.setId(17);
          U.modifier(U2);
          U.supprimer(18);
+         
           System.out.println(U.displayEntities());
+        //System.out.println("No user found with the email: " + U.getUserByExperience("hadil.ibnhajfraj@esprit.tn"));
           
           
             /* Ajouter et Afficher une SOCIETE */
@@ -76,7 +78,8 @@ public class MainTest {
         // skillscrud.addEntity(skills);
         Skills Sk = new Skills();
         Sk.setLibelle("Laravel");
-        Sk.setIdS(4);
+        Sk.setIdS(1);
+        Sk.setUser(1);
         skillscrud.modifier(Sk);
         skillscrud.supprimer(4);
             System.out.println(skillscrud.displayEntities());
@@ -119,20 +122,20 @@ public class MainTest {
          // FC.modifier(F,idF);
            
        /* Ajouter et Afficher Offre */
-        Experience E = new Experience("Developpeur react",LocalDate.of(2020, 5, 17),LocalDate.of(2021, 8, 31),"developper des applications web et mobile",1,2);
+        Experience E = new Experience("Developpeur Backend",LocalDate.of(2020, 5, 21),LocalDate.of(2021, 7, 31),"Developpement Backend",3,1);
      
          Experience E1 = new Experience();
-         E1.setTitreExp("Developpeur Angular");
-         E1.setDateDebut(LocalDate.of(2021, 3, 31));
-         E1.setDateFin(LocalDate.of(2022, 3, 31));
-         E1.setDetails("Developpement des applications  web ");
-         E1.setIdsociete(1);
+         E1.setTitreExp("Developpeur Backend");
+         //E1.setDateDebut(LocalDate.of(2021, 9, 29));
+         //E1.setDateFin(LocalDate.of(2023, 3, 31));
+         E1.setDetails("Developpement Backend  ");
+         E1.setIdsociete(3);
          E1.setIdskills(1);
          E1.setIdEx(1);
          ExperienceCRUD Ex = new ExperienceCRUD();
-         Ex.modifier(E1);
+         //Ex.modifier(E1);
          Ex.supprimer(2);
-             // Ex.addEntity(E);
+              Ex.addEntity(E);
         //System.out.println(Ex.displayEntities());
       
          

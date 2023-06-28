@@ -24,11 +24,11 @@ public class SkillsCRUD implements ICRUD<Skills>{
 
     @Override
     public void addEntity(Skills t) {
-        String requete ="INSERT INTO skills(libelle) VALUES "+"(?)";
+        String requete ="INSERT INTO skills(libelle,user) VALUES "+"(?,?)";
         try {
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, t.getLibelle());
-
+pst.setInt(2, t.getUser());
             pst.executeUpdate();
             System.out.println("Skills add");
         } catch (SQLException ex) {
@@ -75,10 +75,12 @@ public class SkillsCRUD implements ICRUD<Skills>{
     @Override
     public void modifier(Skills p) {
          try {
-        String req = "UPDATE skills  SET libelle=? WHERE idS=?";
+        String req = "UPDATE skills  SET libelle=? , user=? WHERE idS=?";
         PreparedStatement st = MyConnection.getInstance().getCnx().prepareStatement(req);
         st.setString(1, p.getLibelle());
-            st.setInt(2, p.getIdS());
+         st.setInt(2, p.getUser());
+            st.setInt(3, p.getIdS());
+            
             st.executeUpdate();
         System.out.println("Skills updated!");
     } catch (SQLException ex) {

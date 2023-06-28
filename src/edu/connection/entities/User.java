@@ -6,6 +6,8 @@
 package edu.connection.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -22,7 +24,21 @@ public class User {
     private String adresse;
     private Role role;
     private boolean actif;
+    private Formation formation;
+ private Skills skills;
+  private Experience experience;
+    private Object formations;
+  
+public List<Formation> getFormations() {
+    if (formations == null) {
+        formations = new ArrayList<>();
+    }
+    return (List<Formation>) formations;
+}
 
+public void setFormations(List<Formation> formations) {
+    this.formations = formations;
+}
     public User() {
     }
 
@@ -38,6 +54,30 @@ public class User {
         this.adresse = adresse;
         this.role = role;
         this.actif = actif;
+    }
+
+    public User( String nom, String prenom,String email, String tel, String adresse) {
+      
+        this.nom = nom;
+        this.prenom = prenom;
+        
+ 
+        this.email = email;
+        this.tel = tel;
+        this.adresse = adresse;
+     
+    }
+
+   public User( int id,String nom, String prenom,String email, String tel, String adresse) {
+      this.id=id;
+        this.nom = nom;
+        this.prenom = prenom;
+        
+ 
+        this.email = email;
+        this.tel = tel;
+        this.adresse = adresse;
+     
     }
 
     public void setRole(Role role) {
@@ -118,9 +158,51 @@ public class User {
     }
 
     @Override
-    public String toString() {
-        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", dateNaissance=" + dateNaissance + ", email=" + email + ", tel=" + tel + ", adresse=" + adresse + ", role=" + role + ", actif=" + actif + '}';
+       public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", password='" + password + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                ", email='" + email + '\'' +
+                ", tel='" + tel + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", role=" + role +
+                ", actif=" + actif +
+                ", formation=" + formation +
+                 ", skills=" + skills +
+                 ", experience=" + experience  +
+                '}';
     }
+
+
+    public void setFormation(Formation formation) {
+    this.formation = formation;
+}
+     public Formation getFormation() {
+        return formation;
+    }
+
+// Assuming you have the following instance variable in the User class
+
+    public void setSkills(Skills skills) {
+      this.skills=skills;
+    }
+
+    public void setExperience(Experience experience) {
+      this.experience=experience;
+    }
+
+    public Skills getSkills() {
+        return skills;
+    }
+
+    public Experience getExperience() {
+        return experience;
+    }
+
+
 
    
 }

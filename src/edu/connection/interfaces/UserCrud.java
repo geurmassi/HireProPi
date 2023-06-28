@@ -16,6 +16,6 @@ public interface UserCrud <T>{
     public List<T> displayEntities();
      public void supprimer(int id);
     public void modifier(T t);
-       
+     
 }
 
