@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox alignment="center" spacing="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui.RecruteurFXMLController">
+    <TabPane prefWidth="400">
+        <Tab text="Informations personnelles">
+            <VBox spacing="10">
+                <Label text="Prénom :" />
+                <TextField fx:id="firstNameTextField" />
+                <Label text="Nom :" />
+                <TextField fx:id="lastNameTextField" />
+                <Label text="Adresse :" />
+                <TextField fx:id="addressTextField" />
+                <Label text="Téléphone :" />
+                <TextField fx:id="phoneTextField" prefHeight="26.0" prefWidth="323.0" />
+                <Label text="Email :" />
+                <TextField fx:id="emailTextField" />
+                <Button onAction="#savePersonalInformation" text="Enregistrer" />
+            </VBox>
+        </Tab>
+        <Tab text="Expérience scolaire">
+            <VBox spacing="10">
+                <Label text="Formation académique :" />
+                <TableView fx:id="formationTable">
+                    <columns>
+                        <TableColumn text="Diplôme">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="diplome" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Date début">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dateDebutFormation" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Date fin">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="dateFin" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Université">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="universite.libelle" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button onAction="#saveAcademicExperience" text="Enregistrer" />
+            </VBox>
+        </Tab>
+        <Tab text="Skills">
+            <VBox spacing="10">
+                <Label text="Skills :" />
+                <TableView fx:id="skillsTable">
+                    <columns>
+                        <TableColumn text="Libellé">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="libelle" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button onAction="#saveSkills" text="Enregistrer" />
+            </VBox>
+        </Tab>
+        <Tab text="Informations Societe ">
+            <VBox spacing="10">
+                <Label text="Expérience professionnelle :" />
+                <TableView fx:id="experienceTable">
+                    <columns>
+                        <TableColumn text="Nom">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="nom" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Adresse">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="adresse" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Description">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="description" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn text="Téléphone">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="telephone" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                </TableView>
+                <Button onAction="#saveProfessionalExperience" text="Enregistrer" />
+            </VBox>
+        </Tab>
+    </TabPane>
+    <Button mnemonicParsing="false" onAction="#logout" text="Déconnecter" />
+</VBox>

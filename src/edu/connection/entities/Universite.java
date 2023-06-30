@@ -42,5 +42,9 @@ public class Universite {
     public String toString() {
         return "Universite{" + "idUniveriste=" + idUniveriste + ", libelle=" + libelle + '}';
     }
+
+    public void libelleProperty() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -119,6 +119,49 @@ public class UserCRUD implements  UserCrud<User>  {
 
 
 
+    public List<User> getUsersByUniversity(String email) {
+    List<User> userList = new ArrayList<>();
+
+    try {
+        String query = "SELECT U.id, F.idF, T.idUniversite, T.libelle, F.diplome, F.dateDebutFormation, F.dateFin, U.email "
+                + "FROM user U "
+                + "INNER JOIN formation F ON F.idUser = U.id "
+                + "INNER JOIN universite T ON T.idUniversite = F.idUniversity "
+                + "WHERE U.email = ?";
+        PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
+        preparedStatement.setString(1, email);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        while (resultSet.next()) {
+            User user = new User();
+            Formation formation = new Formation();
+            Universite universite = new Universite();
+            user.setId(resultSet.getInt("id"));
+            user.setEmail(resultSet.getString("email"));
+
+            formation.setIdF(resultSet.getInt("idF"));
+            formation.setDiplome(resultSet.getString("diplome"));
+            formation.setDateDebutFormation(resultSet.getDate("dateDebutFormation").toLocalDate());
+            formation.setDateFin(resultSet.getDate("dateFin").toLocalDate());
+
+            universite.setIdUniveriste(resultSet.getInt("idUniversite"));
+            universite.setLibelle(resultSet.getString("libelle"));
+
+            formation.setUniversite(universite);
+            user.setFormation(formation);
+
+            userList.add(user);
+        }
+
+        if (userList.isEmpty()) {
+            System.out.println("No users found with the email: " + email);
+        }
+    } catch (SQLException e) {
+        System.out.println("Error retrieving users by email: " + e.getMessage());
+    }
+
+    return userList;
+}
 
 
  

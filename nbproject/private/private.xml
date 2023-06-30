@@ -4,11 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/ProfileController.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/tests/MainTest.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/ProfilFXML.fxml</file>
+            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/utils/MyConnection.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/tests/TestFXML.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/entities/Experience.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/entities/User.java</file>
-            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/services/UserCRUD.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/RegisterFXMLController.java</file>
+            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/RecruteurFXML.fxml</file>
+            <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/RecruteurFXMLController.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/LoginFXMLController.java</file>
         </group>
     </open-files>

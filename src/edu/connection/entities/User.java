@@ -14,7 +14,8 @@ import java.util.List;
  * @author hadil ibenhajfraj
  */
 public class User {
- private int id;
+
+    private int id;
     private String nom;
     private String prenom;
     private String password;
@@ -25,28 +26,29 @@ public class User {
     private Role role;
     private boolean actif;
     private Formation formation;
- private Skills skills;
-  private Experience experience;
+    private Skills skills;
+    private Experience experience;
     private Object formations;
-  
-public List<Formation> getFormations() {
-    if (formations == null) {
-        formations = new ArrayList<>();
-    }
-    return (List<Formation>) formations;
-}
 
-public void setFormations(List<Formation> formations) {
-    this.formations = formations;
-}
+    public List<Formation> getFormations() {
+        if (formations == null) {
+            formations = new ArrayList<>();
+        }
+        return (List<Formation>) formations;
+    }
+
+    public void setFormations(List<Formation> formations) {
+        this.formations = formations;
+    }
+
     public User() {
     }
 
-    public User( String nom, String prenom, LocalDate dateNaissance,String password,String email, String tel, String adresse, Role role, boolean actif) {
-      
+    public User(String nom, String prenom, LocalDate dateNaissance, String password, String email, String tel, String adresse, Role role, boolean actif) {
+
         this.nom = nom;
         this.prenom = prenom;
-        
+
         this.dateNaissance = dateNaissance;
         this.password = password;
         this.email = email;
@@ -56,28 +58,26 @@ public void setFormations(List<Formation> formations) {
         this.actif = actif;
     }
 
-    public User( String nom, String prenom,String email, String tel, String adresse) {
-      
+    public User(String nom, String prenom, String email, String tel, String adresse) {
+
         this.nom = nom;
         this.prenom = prenom;
-        
- 
+
         this.email = email;
         this.tel = tel;
         this.adresse = adresse;
-     
+
     }
 
-   public User( int id,String nom, String prenom,String email, String tel, String adresse) {
-      this.id=id;
+    public User(int id, String nom, String prenom, String email, String tel, String adresse) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
-        
- 
+
         this.email = email;
         this.tel = tel;
         this.adresse = adresse;
-     
+
     }
 
     public void setRole(Role role) {
@@ -87,12 +87,15 @@ public void setFormations(List<Formation> formations) {
     public Role getRole() {
         return role;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public int getId() {
         return id;
     }
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -112,7 +115,6 @@ public void setFormations(List<Formation> formations) {
     public LocalDate getDateNaissance() {
         return dateNaissance;
     }
-   
 
     public void setPassword(String password) {
         this.password = password;
@@ -125,12 +127,15 @@ public void setFormations(List<Formation> formations) {
     public void setTel(String tel) {
         this.tel = tel;
     }
+
     public String getEmail() {
         return email;
     }
- public void setActif(Boolean actif) {
+
+    public void setActif(Boolean actif) {
         this.actif = actif;
     }
+
     public String getAdresse() {
         return adresse;
     }
@@ -138,9 +143,11 @@ public void setFormations(List<Formation> formations) {
     public boolean getActif() {
         return actif;
     }
+
     public void setActif(boolean actif) {
         this.actif = actif;
     }
+
     public String getNom() {
         return nom;
     }
@@ -158,40 +165,39 @@ public void setFormations(List<Formation> formations) {
     }
 
     @Override
-       public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", password='" + password + '\'' +
-                ", dateNaissance=" + dateNaissance +
-                ", email='" + email + '\'' +
-                ", tel='" + tel + '\'' +
-                ", adresse='" + adresse + '\'' +
-                ", role=" + role +
-                ", actif=" + actif +
-                ", formation=" + formation +
-                 ", skills=" + skills +
-                 ", experience=" + experience  +
-                '}';
+    public String toString() {
+        return "User{"
+                + "id=" + id
+                + ", nom='" + nom + '\''
+                + ", prenom='" + prenom + '\''
+                + ", password='" + password + '\''
+                + ", dateNaissance=" + dateNaissance
+                + ", email='" + email + '\''
+                + ", tel='" + tel + '\''
+                + ", adresse='" + adresse + '\''
+                + ", role=" + role
+                + ", actif=" + actif
+                + ", formation=" + formation
+                + ", skills=" + skills
+                + ", experience=" + experience
+                + '}';
     }
 
-
     public void setFormation(Formation formation) {
-    this.formation = formation;
-}
-     public Formation getFormation() {
+        this.formation = formation;
+    }
+
+    public Formation getFormation() {
         return formation;
     }
 
 // Assuming you have the following instance variable in the User class
-
     public void setSkills(Skills skills) {
-      this.skills=skills;
+        this.skills = skills;
     }
 
     public void setExperience(Experience experience) {
-      this.experience=experience;
+        this.experience = experience;
     }
 
     public Skills getSkills() {
@@ -202,14 +208,4 @@ public void setFormations(List<Formation> formations) {
         return experience;
     }
 
-
-
-   
 }
-
-
-    
-
-    
-    
-    

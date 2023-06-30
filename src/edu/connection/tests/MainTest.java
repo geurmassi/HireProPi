@@ -23,6 +23,7 @@ import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -51,9 +52,11 @@ public class MainTest {
          U.supprimer(18);
          
           System.out.println(U.displayEntities());
-        //System.out.println("No user found with the email: " + U.getUserByExperience("hadil.ibnhajfraj@esprit.tn"));
-          
-          
+        System.out.println("No user found with the email: " + U.getUsersByUniversity("hadil.ibnhajfraj@esprit.tn"));
+         // String email = "example@example.com";
+              //List<User> userList = getUsersByUniversity(email);
+
+    
             /* Ajouter et Afficher une SOCIETE */
        Societe S = new Societe("Tanit web","Monplaisir","societe developpement web ",
                 "image/téléchargement.jpg","99745294","tanitweb@gmail.com");
