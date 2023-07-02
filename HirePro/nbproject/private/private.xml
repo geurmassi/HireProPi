@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/messages/gui/MessageController.java</file>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/services/UserCRUD.java</file>
+            <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/services/EmailSender.java</file>
+            <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/tests/APImailing.java</file>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/entities/User.java</file>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/tests/MainTest.java</file>
         </group>
