@@ -16,37 +16,39 @@
 
 <AnchorPane fx:id="ap_main" prefHeight="369" prefWidth="478" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.messages.gui.MessageController">
     <children>
-      <ImageView fitHeight="75.0" fitWidth="106.0" layoutX="390.0" layoutY="-5.0">
-         <image>
-            <Image url="@../../../../images/hireProLogo.jpg" />
-         </image>
-      </ImageView>
-        <TextField fx:id="tf_message" layoutX="30.0" layoutY="333.0" prefHeight="38.0" prefWidth="361" />    
-       <ScrollPane fx:id="sp_main" fitToWidth="true" layoutX="30" layoutY="70" prefHeight="256" prefWidth="418">
-           <content>
-                       <VBox fx:id="vbox_messages" prefHeight="248" prefWidth="412">
-               <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
-               </children></VBox>
-                           
-                   </content>
-       </ScrollPane>
-      <Label layoutX="219.0" layoutY="29.0" text="Messenger">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="23" />
-         </font></Label>
-      <ChoiceBox fx:id="usersChoiceBox" layoutX="30.0" layoutY="30.0" prefWidth="150.0" />
-      <Circle fx:id="activeCercle" fill="#e6e8eb" layoutX="167.0" layoutY="43.0" radius="6.0" stroke="#e1dcdc" strokeType="INSIDE" />
-      <BorderPane layoutX="391.0" layoutY="334.0" prefHeight="38.0" prefWidth="65.0">
-         <left>
-            <ImageView fx:id="button_send" fitHeight="30.0" fitWidth="49.0" BorderPane.alignment="CENTER" onMouseClicked="#handleButtonClick" >
-               <image>
-                  <Image url="@../../../../images/iconsSend.png" />
-               </image>
-            </ImageView>
-         </left>
-      </BorderPane>
-       
-                   
+        <ImageView fitHeight="75.0" fitWidth="106.0" layoutX="390.0" layoutY="-5.0">
+            <image>
+                <Image url="@../../../../images/hireProLogo.jpg" />
+            </image>
+        </ImageView>
+        <TextField fx:id="tf_message" layoutX="30.0" layoutY="333.0" prefHeight="38.0" prefWidth="361" />
+        <ScrollPane fx:id="sp_main" fitToWidth="true" layoutX="30" layoutY="70" prefHeight="256" prefWidth="418">
+            <content>
+                <VBox fx:id="vbox_messages" prefHeight="248" prefWidth="412">
+                    <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                    </children>
+                </VBox>
+            </content>
+        </ScrollPane>
+        <Label layoutX="219.0" layoutY="29.0" text="Messenger">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="23" />
+            </font>
+        </Label>
+        <ChoiceBox fx:id="usersChoiceBox" layoutX="30.0" layoutY="30.0" prefWidth="150.0" />
+        <Circle fx:id="activeCercle" fill="#e6e8eb" layoutX="167.0" layoutY="43.0" radius="6.0" stroke="#e1dcdc" strokeType="INSIDE" />
+        <BorderPane layoutX="391.0" layoutY="334.0" prefHeight="38.0" prefWidth="65.0">
+            <left>
+                <ImageView fx:id="button_send" fitHeight="30.0" fitWidth="49.0" BorderPane.alignment="CENTER" onMouseClicked="#handleButtonClick">
+                    <image>
+                        <Image url="@../../../../images/iconsSend.png" />
+                    </image>
+                </ImageView>
+            </left>
+        </BorderPane>
+
+        <!-- New Button for File Upload -->
+        <Button fx:id="button_upload" layoutX="30.0" layoutY="300.0" text="Upload File" onAction="#handleUploadButtonClick" />
     </children>
 </AnchorPane>

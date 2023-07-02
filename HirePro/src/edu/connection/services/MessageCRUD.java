@@ -22,13 +22,15 @@ public class MessageCRUD implements ICRUD<Message> {
 
     @Override
     public void addEntity(Message t) {
-        String requete = "INSERT INTO Messages (msg, dateSend, 	idUserSend, idUserReceive ) VALUES" + "(?,?,?,?)";
+        String requete = "INSERT INTO Messages (msg, dateSend, 	idUserSend, idUserReceive,file,fileName ) VALUES" + "(?,?,?,?,?,?)";
         try {
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
             pst.setString(1, t.getMsg());
             pst.setTimestamp(2, t.getDateSend());
             pst.setInt(3, t.getIdUserSend());
             pst.setInt(4, t.getIdUserReceive());
+            pst.setString(5, t.getFile());
+            pst.setString(6, t.getFileName());
             pst.executeUpdate();
             System.out.println("Message  added");
         } catch (SQLException ex) {
@@ -50,7 +52,8 @@ public class MessageCRUD implements ICRUD<Message> {
                 M.setDateSend(rs.getTimestamp(3));
                 M.setIdUserSend(rs.getInt(4));
                 M.setIdUserReceive(rs.getInt(5));
-
+                M.setFile(rs.getString(6));
+                M.setFileName(rs.getString(7));
                 myList.add(M);
             }
 

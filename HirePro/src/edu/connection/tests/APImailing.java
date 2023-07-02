@@ -22,10 +22,10 @@ public class APImailing {
         "<p>The HirePro Team</p>\n" +
         "</body>\n" +
         "</html>";
-        String imagePath="C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\images\\hireProLogo.jpg";
-        CharSequence receiver="kamel";
+        String imagePath="C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\src\\images\\hireProLogo.jpg";
+        String receiver="kamel";
         template = template.replace("{{receiver}}", receiver); // Replace placeholder with receiver value
-emailSender.sendEmail(recipient, subject, template, imagePath);
+        emailSender.sendEmail(recipient, subject, template, imagePath);
       
     }
 }

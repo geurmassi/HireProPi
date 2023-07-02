@@ -12,11 +12,18 @@ import edu.connection.services.MessageCRUD;
 import edu.connection.services.UserCRUD;
 import java.awt.Color;
 import java.io.IOException;
+import edu.connection.services.MessageCRUD;
+import edu.connection.services.UserCRUD;
+import java.awt.Color;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -44,6 +51,12 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.transform.Scale;
 
 /**
  * FXML Controller class
@@ -71,16 +84,66 @@ public class MessageController implements Initializable {
      private int userConnected =1;
      private User objecForUserConnceted;
      private User objectSelectedUser;
+     private String fileBase64String;
+     private String fileName;
     
 
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     private String convertFileToBase64(String filePath) throws IOException {
+    File file = new File(filePath);
+    FileInputStream fileInputStream = new FileInputStream(file);
+    byte[] fileBytes = new byte[(int) file.length()];
+    fileInputStream.read(fileBytes);
+    fileInputStream.close();
+
+    return Base64.getEncoder().encodeToString(fileBytes);
+}
+    private void downloadFileFromBase64(String base64String, String filePath) throws IOException {
+    byte[] fileBytes = Base64.getDecoder().decode(base64String);
+    FileOutputStream fileOutputStream = new FileOutputStream(filePath);
+    fileOutputStream.write(fileBytes);
+    fileOutputStream.close();
+}
+     
+     @FXML
+private void handleUploadButtonClick(ActionEvent event) throws IOException {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Select File to Upload");
+    Stage stage = (Stage) ap_main.getScene().getWindow();
+    File file = fileChooser.showOpenDialog(stage);
+    
+    if (file != null) {
+        // Convert the file to a byte array
+        String fileBytes = convertFileToBase64(file.getAbsolutePath());
+        int startIndex = file.getAbsolutePath().lastIndexOf("\\") + 1; // Add 1 to exclude the last backslash
+        int endIndex = file.getAbsolutePath().lastIndexOf(".pdf");
+        fileName = file.getAbsolutePath().substring(startIndex, endIndex);
+                
+
+       // downloadFileFromBase64(fileBytes, "C:\\Users\\haith\\Downloads\\HirePro-Kamel\\teeeeeeeest.pdf");
+        fileBase64String=fileBytes;
+    } else {
+         fileBase64String="";
+        // No file selected
+        System.out.println("No file selected.");
+    }
+}
     /**
      * Initializes the controller class.
      */
-     
+ 
     public void getMessagesFromDataBase(int userReceive) {
         MessageCRUD MC = new MessageCRUD();
         List<Message> messageList = MC.displayEntities();
-        HBox hbox=new HBox();;
+        HBox hbox=new HBox();
         VBox.setMargin(hbox, new Insets(0, 0, 0, 0));
         for (Message message : messageList) {
             String msg = message.getMsg();
@@ -92,6 +155,9 @@ public class MessageController implements Initializable {
             hbox = new HBox();
             
             textFlow.setPadding(new Insets(5, 5, 5, 10));
+            
+            
+            
             String textFlowCSS="-fx-background-color:rgb(15, 125, 242); -fx-background-radius: 10";
             if (idUserSend ==userConnected&&idUserReceive ==userReceive) {
                  hbox.setAlignment(Pos.CENTER_LEFT);
@@ -103,6 +169,46 @@ public class MessageController implements Initializable {
                textFlowCSS="-fx-background-color:rgb(180,180,180); -fx-background-radius: 10;";
                textFlow.setStyle(textFlowCSS);
                hbox.getChildren().add(textFlow);
+            }
+            if(idUserSend ==userConnected&&idUserReceive ==userReceive&&message.getFile()!=null){
+            String pdfIconPath = "C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\src\\images\\pdfIcon.png";
+            Image pdfIconImage = new Image(new File(pdfIconPath).toURI().toString());
+            ImageView pdfIcon = new ImageView(pdfIconImage);
+            pdfIcon.setFitHeight(20);
+            pdfIcon.setFitWidth(30);
+
+            
+            pdfIcon.setOnMouseClicked(event -> {
+                try {
+                    //String userHomeDirectory = System.getProperty("user.home");
+                    //String downloadFolderPath = userHomeDirectory + File.separator + "Downloads";
+                    // System.out.println(userHomeDirectory);
+                    downloadFileFromBase64(message.getFile(), "C:\\Users\\haith\\Downloads\\teeeeeeeest.pdf");
+                }
+                catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+});
+            // Create a VBox to hold the pdfIcon and the fileNameLabel
+            VBox vbox = new VBox();
+            
+             vbox.setMinHeight(10);
+           
+            // Add the pdfIcon to the VBox
+            vbox.getChildren().add(pdfIcon);
+
+            // Create a Label for the file name
+            String fileName = "teeeeeeeest";
+            Label fileNameLabel = new Label(fileName);
+
+            // Add some spacing between the pdfIcon and the file name label
+            vbox.setSpacing(5);
+
+            // Add the fileNameLabel to the VBox
+            vbox.getChildren().add(fileNameLabel);
+
+            // Add the VBox to the HBox
+            hbox.getChildren().add(vbox);
             }
             
             vbox_messages.getChildren().add(hbox);
@@ -178,11 +284,10 @@ private void sendMailWhenUserDisconnected(User userReceive,User objecForUserConn
         "<h1>Dear {{recipientName}},</h1>\n" +  
         "<p>1 new message from {{receiver}} waiting for your answer</p>\n" +
         "<p>Best regards,</p>\n" +
-        "<div><img src=\"C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\images\\hireProLogo.jpg\" alt=\"Girl in a jacket\" width=\"500\" height=\"600\"></div>\n" +
         "<p>The HirePro Team</p>\n" +
         "</body>\n" +
         "</html>";
-        String imagePath="C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\images\\hireProLogo.jpg";
+        String imagePath="C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\src\\images\\hireProLogo.jpg";
             try {
                 template = template.replace("{{receiver}}", receiver);
                 template = template.replace("{{recipientName}}", recipientName);
@@ -194,10 +299,10 @@ private void sendMailWhenUserDisconnected(User userReceive,User objecForUserConn
 }
     
     private void saveMessages(User userReceive,User objecForUserConnceted) {
-        
+        System.out.println(fileName+"55555555");
         String msg=tf_message.getText();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Message M=new Message(msg,timestamp,userConnected,userReceive.getId());
+        Message M=new Message(msg,timestamp,userConnected,userReceive.getId(),fileBase64String,fileName);
         MessageCRUD MC=new MessageCRUD();
         MC.addEntity(M);
         tf_message.clear();
