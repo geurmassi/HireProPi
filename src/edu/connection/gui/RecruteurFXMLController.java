@@ -2,17 +2,26 @@ package edu.connection.gui;
 
 import edu.connection.entities.User;
 import edu.connection.utils.MyConnection;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 public class RecruteurFXMLController implements Initializable {
 
@@ -41,6 +50,8 @@ public class RecruteurFXMLController implements Initializable {
     private TableColumn<Experience, String> companyAddressColumn;
     private TableColumn<Experience, String> descriptionColumn;
     private TableColumn<Experience, String> phoneColumn;
+    @FXML
+    private Button logout_btn;
 
     public void initialize() {
         // Initialize the columns for the Formation table
@@ -83,10 +94,44 @@ public class RecruteurFXMLController implements Initializable {
         // Implement your logic here
     }
 
+   
     @FXML
-    private void logout() {
-        // Handle the logout action
-        // Implement your logic here
+    private void logout(ActionEvent event) {
+        try {
+            String email = emailTextField.getText();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
+            Parent profileRoot = loader.load();
+            LoginFXMLController LoginFXMLController = loader.getController();
+            // Update the active status of the user to 0 (inactive) in the database
+            if (event.getSource() == logout_btn) {
+                  Scene profileScene = new Scene(profileRoot);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.setScene(profileScene);
+                primaryStage.show();
+                updateUserActiveStatus(email, 0);
+            }
+            // Perform logout operations, e.g., redirect to the login screen
+        } catch (IOException ex) {
+            Logger.getLogger(ProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void updateUserActiveStatus(String email, int activeStatus) {
+        try {
+            String query = "UPDATE user SET actif = ? WHERE email = ?";
+            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
+            preparedStatement.setInt(1, activeStatus);
+            preparedStatement.setString(2, email);
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("User active status updated successfully.");
+            } else {
+                System.out.println("No user found with the email: " + email);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error updating user active status: " + e.getMessage());
+        }
     }
 
      @Override

@@ -7,6 +7,7 @@ import edu.connection.entities.Societe;
 import edu.connection.entities.Universite;
 import edu.connection.entities.User;
 import edu.connection.utils.MyConnection;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -30,10 +31,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 public class ProfileController implements Initializable {
-
+ @FXML
+    private WebView mapWebView;
     @FXML
     private TextField firstNameTextField;
     @FXML
@@ -88,6 +94,13 @@ public class ProfileController implements Initializable {
 
     public void setTel(String tel) {
         this.phoneTextField.setText(tel);
+    }
+    private void showMap(MouseEvent event) {
+        String address = addressTextField.getText();
+        String url = "https://www.google.com/maps/place/" + address;
+
+        WebEngine webEngine = mapWebView.getEngine();
+        webEngine.load(url);
     }
 
     public void setPersonalInformation(String loginEmail) {

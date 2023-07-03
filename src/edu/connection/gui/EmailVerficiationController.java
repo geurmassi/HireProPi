@@ -20,16 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import java.sql.ResultSet;
-import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.Properties;
 import edu.connection.utils.EmailSender;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
-import javax.mail.internet.MimeUtility;
 
 public class EmailVerficiationController implements Initializable {
 
