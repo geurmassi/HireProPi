@@ -1,6 +1,7 @@
 package edu.connection.gui;
 
 import edu.connection.entities.User;
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
@@ -97,6 +98,7 @@ public class RecruteurFXMLController implements Initializable {
    
     @FXML
     private void logout(ActionEvent event) {
+            UserCRUD userService = new UserCRUD();
         try {
             String email = emailTextField.getText();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
@@ -108,7 +110,7 @@ public class RecruteurFXMLController implements Initializable {
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setScene(profileScene);
                 primaryStage.show();
-                updateUserActiveStatus(email, 0);
+               userService.updateUserInActiveStatus(email, 0);
             }
             // Perform logout operations, e.g., redirect to the login screen
         } catch (IOException ex) {
@@ -116,23 +118,6 @@ public class RecruteurFXMLController implements Initializable {
         }
     }
 
-    private void updateUserActiveStatus(String email, int activeStatus) {
-        try {
-            String query = "UPDATE user SET actif = ? WHERE email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setInt(1, activeStatus);
-            preparedStatement.setString(2, email);
-            int rowsAffected = preparedStatement.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("User active status updated successfully.");
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error updating user active status: " + e.getMessage());
-        }
-    }
 
      @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -231,7 +216,8 @@ public class RecruteurFXMLController implements Initializable {
     public void setPersonalInformation(String loginEmail) {
         // Retrieve the user's information from the database based on the login email
         // Assuming you have a method to fetch the user's information based on their email
-        User user = getUserByEmail(loginEmail);
+            UserCRUD userService = new UserCRUD();
+        User user = userService.getUserByEmail(loginEmail);
 
         if (user != null) {
             String firstName = user.getNom();
@@ -269,29 +255,5 @@ public class RecruteurFXMLController implements Initializable {
         this.phoneTextField.setText(tel);
     }
 
-    private User getUserByEmail(String email) {
-        try {
-            String query = "SELECT * FROM user WHERE email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setNom(resultSet.getString("nom"));
-                user.setPrenom(resultSet.getString("prenom"));
-                user.setAdresse(resultSet.getString("adresse"));
-                user.setTel(resultSet.getString("tel"));
-                user.setEmail(resultSet.getString("email"));
-                return user;
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving user by email: " + e.getMessage());
-        }
-
-        return null; // No user found or an error occurred
-    }
+    
 }

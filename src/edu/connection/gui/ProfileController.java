@@ -6,6 +6,7 @@ import edu.connection.entities.Skills;
 import edu.connection.entities.Societe;
 import edu.connection.entities.Universite;
 import edu.connection.entities.User;
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -106,7 +107,8 @@ public class ProfileController implements Initializable {
     public void setPersonalInformation(String loginEmail) {
         // Retrieve the user's information from the database based on the login email
         // Assuming you have a method to fetch the user's information based on their email
-        User user = getUserByEmail(loginEmail);
+        UserCRUD userService = new UserCRUD();
+        User user = userService.getUserByEmail(loginEmail);
 
         if (user != null) {
             String firstName = user.getNom();
@@ -126,7 +128,8 @@ public class ProfileController implements Initializable {
 
     public void setPersonalScolaire(String email) {
         // Récupérer les informations scolaires de l'utilisateur à partir de l'e-mail
-        User user = getUserByUniversity(email);
+             UserCRUD userService = new UserCRUD();
+        User user = userService.getUserByUniversity(email);
 
         if (user != null) {
             Formation formation = user.getFormation();
@@ -149,7 +152,8 @@ public class ProfileController implements Initializable {
    
 
  public void setPersonalExperience(String email) {
-       User user = getUserByExperience(email);
+     UserCRUD userService = new UserCRUD();
+       User user = userService.getUserByExperience(email);
 
         if (user != null) {
             Experience experience = user.getExperience();
@@ -195,6 +199,7 @@ public class ProfileController implements Initializable {
 
     @FXML
     private void logout(ActionEvent event) {
+        UserCRUD userService = new UserCRUD();
         try {
             String email = emailTextField.getText();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
@@ -206,7 +211,7 @@ public class ProfileController implements Initializable {
                 Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 primaryStage.setScene(profileScene);
                 primaryStage.show();
-                updateUserActiveStatus(email, 0);
+                userService.updateUserInActiveStatus(email, 0);
             }
             // Perform logout operations, e.g., redirect to the login screen
         } catch (IOException ex) {
@@ -214,132 +219,11 @@ public class ProfileController implements Initializable {
         }
     }
 
-    private void updateUserActiveStatus(String email, int activeStatus) {
-        try {
-            String query = "UPDATE user SET actif = ? WHERE email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setInt(1, activeStatus);
-            preparedStatement.setString(2, email);
-            int rowsAffected = preparedStatement.executeUpdate();
+  
 
-            if (rowsAffected > 0) {
-                System.out.println("User active status updated successfully.");
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error updating user active status: " + e.getMessage());
-        }
-    }
+   
 
-    private User getUserByEmail(String email) {
-        try {
-            String query = "SELECT * FROM user WHERE email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setNom(resultSet.getString("nom"));
-                user.setPrenom(resultSet.getString("prenom"));
-                user.setAdresse(resultSet.getString("adresse"));
-                user.setTel(resultSet.getString("tel"));
-                user.setEmail(resultSet.getString("email"));
-                return user;
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving user by email: " + e.getMessage());
-        }
-
-        return null; // No user found or an error occurred
-    }
-
-    private User getUserByUniversity(String email) {
-        try {
-            String query = "SELECT U.id, F.idF, T.idUniversite, T.libelle, F.diplome, F.dateDebutFormation, F.dateFin, U.email "
-                    + "FROM user U "
-                    + "INNER JOIN formation F ON F.idUser = U.id "
-                    + "INNER JOIN universite T ON T.idUniversite = F.idUniversity "
-                    + "WHERE U.email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                User user = new User();
-                Formation formation = new Formation();
-                Universite universite = new Universite();
-                user.setId(resultSet.getInt("id"));
-                user.setEmail(resultSet.getString("email"));
-
-                formation.setIdF(resultSet.getInt("idF"));
-                formation.setDiplome(resultSet.getString("diplome"));
-                formation.setDateDebutFormation(resultSet.getDate("dateDebutFormation").toLocalDate());
-                formation.setDateFin(resultSet.getDate("dateFin").toLocalDate());
-
-                universite.setIdUniveriste(resultSet.getInt("idUniversite"));
-                universite.setLibelle(resultSet.getString("libelle"));
-
-                formation.setUniversite(universite);
-                user.setFormation(formation);
-
-                return user;
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving user by email: " + e.getMessage());
-        }
-
-        return null; // No user found or an error occurred
-    }
- private User getUserByExperience(String email) {
-        try {
-            String query = "SELECT U.id, T.idEx, S.idS, T.titreExp, T.dateDebut, T.dateFin, T.details,c.nom, U.email "
-                    + "FROM user U "
-                    + "INNER JOIN skills S ON S.user = U.id "
-                    + "INNER JOIN expriencepro T ON T.idSkills = S.idS "
-                    + "INNER JOIN societe C ON C.idS = T.idSociete "
-                    + "WHERE U.email = ?";
-            PreparedStatement preparedStatement = MyConnection.getInstance().getCnx().prepareStatement(query);
-            preparedStatement.setString(1, email);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                User user = new User();
-                Skills skills = new Skills();
-                Experience experience = new Experience();
-                Societe societe = new Societe();
-                user.setId(resultSet.getInt("id"));
-                user.setEmail(resultSet.getString("email"));
-
-                skills.setIdS(resultSet.getInt("idS"));
-                experience.setIdEx(resultSet.getInt("idEx"));
-                societe.setIdS(resultSet.getInt("idS"));
-                experience.setTitreExp(resultSet.getString("titreExp"));
-                experience.setDateDebut(resultSet.getDate("dateDebut").toLocalDate());
-                experience.setDateFin(resultSet.getDate("dateFin").toLocalDate());
-                experience.setDetails(resultSet.getString("details"));
-                societe.setNom(resultSet.getString("nom"));
-               
-
-  user.setSkills(skills);
-            user.setExperience(experience);
-            experience.setSociete(societe);
-                return user;
-            } else {
-                System.out.println("No user found with the email: " + email);
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving user by email: " + e.getMessage());
-        }
-
-        return null; // No user found or an error occurred
-    }
+    
   
     @FXML
     private void savePersonalInformation(ActionEvent event) {

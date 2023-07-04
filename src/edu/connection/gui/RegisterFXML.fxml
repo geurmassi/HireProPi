@@ -25,13 +25,13 @@
                               <Font name="Cambria Bold Italic" size="49.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="signupNom" layoutX="202.0" layoutY="112.0" prefHeight="26.0" prefWidth="175.0" promptText="Last Name" />
+                        <TextField fx:id="signupNom" layoutX="159.0" layoutY="111.0" prefHeight="26.0" prefWidth="175.0" promptText="Last Name" />
                         <Label layoutX="24.0" layoutY="109.0" text="LastName :">
                            <font>
                               <Font name="Bell MT" size="25.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="SignUpPassword" layoutX="201.0" layoutY="331.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter your Password" />
+                        <PasswordField fx:id="SignUpPassword" layoutX="151.0" layoutY="331.0" prefHeight="26.0" prefWidth="586.0" promptText="Please Enter your Password" />
                         <Button fx:id="SignUpBtn" layoutX="250.0" layoutY="529.0" mnemonicParsing="false" onAction="#register" prefHeight="30.0" prefWidth="253.0" text="Sign Up">
                            <effect>
                               <Reflection />
@@ -54,8 +54,8 @@
                               <Font name="Bell MT" size="25.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="signupDateN" layoutX="204.0" layoutY="169.0" promptText="Birthday" />
-                        <Label layoutX="397.0" layoutY="166.0" text="Mobile phone :">
+                        <DatePicker fx:id="signupDateN" layoutX="159.0" layoutY="169.0" promptText="Birthday" />
+                        <Label layoutX="390.0" layoutY="166.0" prefHeight="30.0" prefWidth="159.0" text="Mobile phone :">
                            <font>
                               <Font name="Bell MT" size="25.0" />
                            </font>
@@ -66,7 +66,7 @@
                               <Font name="Bell MT" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="SignUpAdress" layoutX="204.0" layoutY="225.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter Your Adress" />
+                        <TextField fx:id="SignUpAdress" layoutX="155.0" layoutY="225.0" prefHeight="26.0" prefWidth="585.0" promptText="Please Enter Your Adress" />
                         <Label layoutX="24.0" layoutY="333.0" text="Password :">
                            <font>
                               <Font name="Bell MT" size="25.0" />
@@ -77,7 +77,7 @@
                               <Font name="Bell MT" size="25.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="SignUpEmail" layoutX="202.0" layoutY="276.0" prefHeight="26.0" prefWidth="536.0" promptText="Please Enter Your Email" />
+                        <TextField fx:id="SignUpEmail" layoutX="152.0" layoutY="276.0" prefHeight="26.0" prefWidth="586.0" promptText="Please Enter Your Email" />
                         <Label layoutX="18.0" layoutY="383.0" text="Confirm Password :">
                            <font>
                               <Font name="Bell MT" size="25.0" />

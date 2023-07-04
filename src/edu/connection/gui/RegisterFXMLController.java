@@ -5,6 +5,7 @@
 */
 package edu.connection.gui;
 
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
@@ -84,58 +85,54 @@ private TextField captcha_filed;
  * Initializes the controller class.
  */
 @FXML
-public void register(ActionEvent event) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
 
-        AlertMessage alert = new AlertMessage();
-        if (signupNom.getText().isEmpty() || signupPrenom.getText().isEmpty() || SignUpAdress.getText().isEmpty()) {
-            alert.errorMessage("Please fill in all required fields");
-        } else if (!signupNom.getText().matches("[a-zA-Z]+")) {
-            alert.errorMessage("Invalid value for Nom. Only alphabetic characters are allowed.");
-        } else if (!signupPrenom.getText().matches("[a-zA-Z]+")) {
-            alert.errorMessage("Invalid value for Prenom. Only alphabetic characters are allowed.");
-        } else if (signupDateN.getValue() == null) {
-            alert.errorMessage("Please select a valid Date de Naissance.");
-        } else if (SignUpEmail.getText().isEmpty() || !SignUpEmail.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
-            alert.errorMessage("Invalid email format.");
-        } else if (SignUpTel.getText().isEmpty() || !SignUpTel.getText().matches("\\d+")) {
-            alert.errorMessage("Invalid Tel. Only numeric digits are allowed.");
-        } else if (SignUpAdress.getText().isEmpty()) {
-            alert.errorMessage("Please fill in the Adress field.");
-        } else if (SignUpPassword.getText().isEmpty() || SignUpConfirmPassword.getText().isEmpty()) {
-            alert.errorMessage("Please fill in both Password and Confirm Password fields.");
-        } else if (!SignUpPassword.getText().equals(SignUpConfirmPassword.getText())) {
-            alert.errorMessage("Passwords do not match.");
-        } else if (SignUpPassword.getText().length() < 8) {
-            alert.errorMessage("Invalid Password. Password must be at least 8 characters long.");
-        }
+    public void register(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginFXML.fxml"));
 
-        String enteredCaptcha = captcha_filed.getText();
+            AlertMessage alert = new AlertMessage();
+            if (signupNom.getText().isEmpty() || signupPrenom.getText().isEmpty() || SignUpAdress.getText().isEmpty()) {
+                alert.errorMessage("Please fill in all required fields");
+            } else if (!signupNom.getText().matches("[a-zA-Z]+")) {
+                alert.errorMessage("Invalid value for Nom. Only alphabetic characters are allowed.");
+            } else if (!signupPrenom.getText().matches("[a-zA-Z]+")) {
+                alert.errorMessage("Invalid value for Prenom. Only alphabetic characters are allowed.");
+            } else if (signupDateN.getValue() == null) {
+                alert.errorMessage("Please select a valid Date de Naissance.");
+            } else if (SignUpEmail.getText().isEmpty() || !SignUpEmail.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+                alert.errorMessage("Invalid email format.");
+            } else if (SignUpTel.getText().isEmpty() || !SignUpTel.getText().matches("\\d+")) {
+                alert.errorMessage("Invalid Tel. Only numeric digits are allowed.");
+            } else if (SignUpAdress.getText().isEmpty()) {
+                alert.errorMessage("Please fill in the Adress field.");
+            } else if (SignUpPassword.getText().isEmpty() || SignUpConfirmPassword.getText().isEmpty()) {
+                alert.errorMessage("Please fill in both Password and Confirm Password fields.");
+            } else if (!SignUpPassword.getText().equals(SignUpConfirmPassword.getText())) {
+                alert.errorMessage("Passwords do not match.");
+            } else if (SignUpPassword.getText().length() < 8) {
+                alert.errorMessage("Invalid Password. Password must be at least 8 characters long.");
+            }
 
-        if (!enteredCaptcha.equals(captcha)) {
-            alert.errorMessage("Invalid captcha. Please try again.");
-        }else {
-            String checkUsername = "SELECT * FROM user WHERE email='" + SignUpEmail.getText() + "'";
-            try {
-                Statement st = MyConnection.getInstance().getCnx().createStatement();
-                ResultSet rs = st.executeQuery(checkUsername);
+            String enteredCaptcha = captcha_filed.getText();
 
-                if (rs.next()) {
-                    alert.errorMessage(SignUpEmail.getText() + "is already taken");
+            if (!enteredCaptcha.equals(captcha)) {
+                alert.errorMessage("Invalid captcha. Please try again.");
+            } else {
+                UserCRUD userService = new UserCRUD();
+                if (userService.checkUsernameExists(SignUpEmail.getText())) {
+                    alert.errorMessage(SignUpEmail.getText() + " is already taken");
                 } else {
-                    String requete = "INSERT INTO user(nom,prenom,dateNaissance,password,email,tel,adresse,role) VALUES " + "(?,?,?,?,?,?,?,?)";
-                    PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
-                    pst.setString(1, signupNom.getText());
-                    pst.setString(2, signupPrenom.getText());
-                    pst.setDate(3, Date.valueOf(signupDateN.getValue()));
-                    pst.setString(4, SignUpPassword.getText());
-                    pst.setString(5, SignUpEmail.getText());
-                    pst.setString(6, SignUpTel.getText());
-                    pst.setString(7, SignUpAdress.getText());
-                    pst.setString(8, (String) combox.getSelectionModel().getSelectedItem());
-                    pst.executeUpdate();
-                    alert.SuccessMessage("Registred Successfully");
+                    userService.insertUser(
+                        signupNom.getText(),
+                        signupPrenom.getText(),
+                        signupDateN.getValue(),
+                        SignUpPassword.getText(),
+                        SignUpEmail.getText(),
+                        SignUpTel.getText(),
+                        SignUpAdress.getText(),
+                        (String) combox.getSelectionModel().getSelectedItem()
+                    );
+                    alert.SuccessMessage("Registered Successfully");
 
                     SignUpForm.setVisible(false);
                     Parent loginroot = loader.load();
@@ -144,18 +141,14 @@ public void register(ActionEvent event) {
                     Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     primaryStage.setScene(login);
                     primaryStage.show();
-                      loadProfileScene();
+                    loadProfileScene();
                 }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
             }
-                        captcha_filed.clear();
-
+            captcha_filed.clear();
+        } catch (IOException ex) {
+            Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (IOException ex) {
-        Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
 
 
 

@@ -1,5 +1,6 @@
 package edu.connection.gui;
 
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
 
@@ -55,23 +55,16 @@ public class ForgetPasswordFXMLController implements Initializable {
         }
     }
 
-    private void updatePasswordInDatabase(String newPassword) {
-        // Mettez en œuvre la logique pour mettre à jour le mot de passe dans la base de données
-        // en utilisant l'adresse e-mail de l'utilisateur (userEmail) et le mot de passe saisi (newPassword)
-        // Assurez-vous de prendre les mesures nécessaires pour sécuriser le stockage du mot de passe,
-        // comme le hachage et le salage.
+   private void updatePasswordInDatabase(String newPassword) {
+    // Mettez en œuvre la logique pour mettre à jour le mot de passe dans la base de données
+    // en utilisant l'adresse e-mail de l'utilisateur (userEmail) et le mot de passe saisi (newPassword)
+    // Assurez-vous de prendre les mesures nécessaires pour sécuriser le stockage du mot de passe,
+    // comme le hachage et le salage.
 
-        // Exemple de code pour mettre à jour le mot de passe dans la base de données
-        String query = "UPDATE user SET password = ? WHERE email = ?";
-        try {
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
-            pst.setString(1, newPassword);
-            pst.setString(2, userEmail);
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+    // Exemple de code pour mettre à jour le mot de passe dans la base de données
+    UserCRUD userService = new UserCRUD();
+    userService.updateUserPassword(userEmail, newPassword);
+}
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

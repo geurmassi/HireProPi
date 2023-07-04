@@ -1,5 +1,6 @@
 package edu.connection.gui;
 
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
@@ -45,44 +46,38 @@ private void SendEmail(ActionEvent event) {
     if (Email.getText().isEmpty()) {
         alert.errorMessage("Please fill all blank fields");
     } else {
-        String query = "SELECT * FROM user WHERE email = ?";
-        try {
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
-            pst.setString(1, Email.getText());
+        UserCRUD userService = new UserCRUD();
+        boolean emailExists = userService.isEmailExists(Email.getText());
+        if (emailExists) {
+            // L'email existe dans la base de données
+            alert.SuccessMessage("Email sent successfully");
 
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                // L'email existe dans la base de données
-                alert.SuccessMessage("Email sent successfully");
+            // Envoyer l'email de récupération du mot de passe
+            String recipient = Email.getText();
+            String subject = "Password Recovery";
+            String newPassword = generateRandomPassword(); // Génère un nouveau mot de passe aléatoire
+            String message = "Voici votre nouveau mot de passe : " + newPassword;
+            EmailSender.sendEmail(recipient, subject, message, newPassword);
 
-                // Envoyer l'email de récupération du mot de passe
-                String recipient = Email.getText();
-                String subject = "Password Recovery";
-                String newPassword = generateRandomPassword(); // Génère un nouveau mot de passe aléatoire
-                String message = "Voici votre nouveau mot de passe : " + newPassword;
-                EmailSender.sendEmail(recipient, subject, message, newPassword);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgetPasswordFXML.fxml"));
+                Parent loginroot = loader.load();
+                ForgetPasswordFXMLController forgetPasswordController = loader.getController();
+                forgetPasswordController.setUserEmail(Email.getText());
 
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ForgetPasswordFXML.fxml"));
-                    Parent loginroot = loader.load();
-                    ForgetPasswordFXMLController forgetPasswordController = loader.getController();
-                    forgetPasswordController.setUserEmail(Email.getText());
-
-                    Scene email_verification = new Scene(loginroot);
-                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    primaryStage.setScene(email_verification);
-                    primaryStage.show();
-                } catch (IOException ex) {
-                    Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                alert.errorMessage("Email does not exist");
+                Scene email_verification = new Scene(loginroot);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.setScene(email_verification);
+                primaryStage.show();
+            } catch (IOException ex) {
+                Logger.getLogger(RegisterFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ForgetPasswordFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            alert.errorMessage("Email does not exist");
         }
     }
 }
+
 
 
     private String generateRandomPassword() {

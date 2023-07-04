@@ -5,11 +5,11 @@
  */
 package edu.connection.gui;
 
+import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -65,109 +65,76 @@ public class LoginFXMLController implements Initializable {
      */
     
     @FXML
-  public void login(ActionEvent event) {
-    AlertMessage alert = new AlertMessage();
-    if (login_email.getText().isEmpty() || login_password.getText().isEmpty()) {
-        alert.errorMessage("Incorrect UserName/Password");
-    } else {
-         String checkUsername = "SELECT email,password , actif FROM user WHERE email=? and password=?";
-        try {
-           
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(checkUsername);
-            pst.setString(1, login_email.getText());
-            pst.setString(2, login_password.getText());
+public void login(ActionEvent event) {
+        AlertMessage alert = new AlertMessage();
+        if (login_email.getText().isEmpty() || login_password.getText().isEmpty()) {
+            alert.errorMessage("Incorrect UserName/Password");
+        } else {
+            String email = login_email.getText();
+            String password = login_password.getText();
 
-             result = pst.executeQuery();
-               if (result.next()) {
-                boolean actif = result.getBoolean("actif");
-                if (actif) {
-                    alert.SuccessMessage("Successfully logged in!!");
-                } else {
-                    // Update the user's status to active
-                    updateActifStatus(login_email.getText(), true);
-                    alert.SuccessMessage("Successfully logged in!! Your account is now active.");
-                }
+            UserCRUD userService = new UserCRUD();
+            boolean credentialsValid = userService.checkCredentials(email, password);
+ 
+            if (credentialsValid) {
+                alert.SuccessMessage("Successfully logged in!!");
             } else {
                 loginAttempts++;
                 if (loginAttempts >= 3) {
                     // Bloquer l'utilisateur
-                    blockUser(login_email.getText());
+                   userService.blockUser(email);
                     alert.errorMessage("Incorrect UserName/Password. Your account has been blocked.");
                 } else {
                     alert.errorMessage("Incorrect UserName/Password");
                 }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         String loginEmail = login_email.getText();
+        // Le reste de votre code...
+        
 
-    // Déterminer le rôle de l'utilisateur en fonction de loginEmail
-    boolean isRecruiter = isRecruiter(loginEmail); // Supposons que vous ayez une méthode pour déterminer si l'utilisateur est un recruteur
+        // Déterminer le rôle de l'utilisateur en fonction de loginEmail
+          // Supposons que vous ayez une méthode pour déterminer si l'utilisateur est un recruteur
+          UserCRUD userService = new UserCRUD();
+          String loginEmail = login_email.getText();
+boolean isRecruiter = userService.isRecruiter(loginEmail);
+        try {
+            if (event.getSource() == login_btn) {
+                FXMLLoader loader;
+                Parent profileRoot;
+                if (isRecruiter) {
+                    System.out.println("1- Success.....");
+                    // Charger RecruteurFXML.fxml pour les recruteurs
+                    loader = new FXMLLoader(getClass().getResource("RecruteurFXML.fxml"));
+                    profileRoot = loader.load();
+                    System.out.println("2- Success.....");
+                    RecruteurFXMLController recruteurController = loader.getController();
+                    recruteurController.setPersonalInformation(loginEmail);
+                    System.out.println("3- Success.....");
+                } else {
+                    // Charger ProfilFXML.fxml pour les non-recruteurs
+                    System.out.println("1- Fail......");
+                    loader = new FXMLLoader(getClass().getResource("ProfilFXML.fxml"));
+                    profileRoot = loader.load();
+                    ProfileController profileController = loader.getController();
+                    profileController.setPersonalInformation(loginEmail);
+                    profileController.setPersonalScolaire(loginEmail);
+                    profileController.setPersonalExperience(loginEmail);
+                    System.out.println("3- Fail......");
+                }
 
-    try {
-        if (event.getSource() == login_btn) {
-            FXMLLoader loader;
-            Parent profileRoot;
-            if (isRecruiter) {
-                System.out.println("1- Success.....");
-                // Charger RecruteurFXML.fxml pour les recruteurs
-                loader = new FXMLLoader(getClass().getResource("RecruteurFXML.fxml"));
-                profileRoot = loader.load();
-                System.out.println("2- Success.....");
-                RecruteurFXMLController recruteurController = loader.getController();
-                recruteurController.setPersonalInformation(loginEmail);
-                System.out.println("3- Success.....");
-            } else {
-                // Charger ProfilFXML.fxml pour les non-recruteurs
-                System.out.println("1- Fail......");
-                loader = new FXMLLoader(getClass().getResource("ProfilFXML.fxml"));
-                profileRoot = loader.load();
-                ProfileController profileController = loader.getController();
-                profileController.setPersonalInformation(loginEmail);
-                profileController.setPersonalScolaire(loginEmail);
-                profileController.setPersonalExperience(loginEmail);
-                System.out.println("3- Fail......");
+                Scene profileScene = new Scene(profileRoot);
+                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                primaryStage.setScene(profileScene);
+                primaryStage.show();
             }
-
-            Scene profileScene = new Scene(profileRoot);
-            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            primaryStage.setScene(profileScene);
-            primaryStage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    } catch (IOException ex) {
-        ex.printStackTrace();
     }
-    }
-}
-  private void blockUser(String email) {
-    try {
-        String req = "UPDATE user SET blocked=? WHERE email=?";
-        PreparedStatement updateStmt = MyConnection.getInstance().getCnx().prepareStatement(req);
-        updateStmt.setBoolean(1, true);
-        updateStmt.setString(2, email);
-        updateStmt.executeUpdate();
-        System.out.println("User blocked!");
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-    }
-}
-private void updateActifStatus(String email, boolean actif) {
-    
-    
-          try {
-        String req = "UPDATE user SET actif=? WHERE email=?";
-        PreparedStatement updateStmt = MyConnection.getInstance().getCnx().prepareStatement(req);
-       
-             updateStmt.setBoolean(1, actif);
-        updateStmt.setString(2, email);
-           
-            updateStmt.executeUpdate();
-        System.out.println("User updated!");
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-    }
-}
+
+
+  
+
 
     @FXML
    public void showPassword() {
@@ -269,40 +236,10 @@ private void updateActifStatus(String email, boolean actif) {
     }
 
 
+  
 
 
-
-    private boolean isRecruiter(String email) {
     
-    
-    try {
-       
-         String checkUsername = "SELECT role FROM user WHERE email = ?";
-         prepar = MyConnection.getInstance().getCnx().prepareStatement(checkUsername);
-        prepar.setString(1, email);
-        
-        // Execute the query
-        ResultSet resultSet = prepar.executeQuery();
-        
-        // Check if the user exists and has the role "recruteur"
-        if (resultSet.next()) {
-            String role = resultSet.getString("role");
-            return role.equalsIgnoreCase("recruteur");
-        } else {
-            // User does not exist or has no role assigned
-            return false;
-        }
-    } catch (SQLException ex) {
-        // Handle the exception appropriately
-        return false;
-    } finally {
-        // Close the database connection
-        try {
-            prepar.close();
-        } catch (SQLException ex) {
-        }
-    }
-    }
     
 
     
