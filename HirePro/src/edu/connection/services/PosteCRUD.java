@@ -5,55 +5,59 @@
  */
 package edu.connection.services;
 
+import edu.connection.entities.Offre;
 import edu.connection.entities.Poste;
-import edu.connection.entities.Societe;
+import edu.connection.entities.ReceptionOfApplication;
+import edu.connection.entities.TypeEmploi;
+import edu.connection.entities.TypeLieuTravail;
 import edu.connection.interfaces.ICRUD;
 import edu.connection.utils.MyConnection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author hadil ibenhajfraj
+ * @author ASUS
  */
-public class PosteCRUD implements ICRUD<Poste>{
+public class PosteCrud implements ICRUD<Poste>{
+
 
     @Override
-    public void addEntity(Poste t) {
-       String requete ="INSERT INTO poste(poste) VALUES "+"(?)";
+    public void addEntity(Poste poste) {
+        String requete ="INSERT INTO poste(poste) VALUES "+"(?)";
         try {
             PreparedStatement pst= MyConnection.getInstance().getCnx().prepareStatement(requete);
-            pst.setString(1, t.getPoste());
-             
-           
-          
+            pst.setString(1, poste.getPoste());
             pst.executeUpdate();
-            System.out.println("Poste add");
+            System.out.println("Poste Added!!");
         } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
-        }
+        
+    }  
     }
 
     @Override
     public List<Poste> displayEntities() {
-      List<Poste> myList = new ArrayList<>();
-        try {
-            String requete="SELECT*FROM poste";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
-            ResultSet rs =st.executeQuery(requete);
-            while (rs.next()){
-            Poste U = new Poste();
-            U.setIdP(rs.getInt(1));
-            U.setPoste(rs.getString("nom"));
-       
-              myList.add(U);
+     List<Poste> myList = new ArrayList<>();
+        String query = "SELECT * FROM Poste";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+                ResultSet rs = pst.executeQuery()) {
+
+            while (rs.next()) {
+               
+                int idP = rs.getInt("idP");
+                String poste = rs.getString("poste");
+               
+
+                Poste p = new Poste(idP,poste);
+                myList.add(p);
             }
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -62,33 +66,42 @@ public class PosteCRUD implements ICRUD<Poste>{
 
     @Override
     public void supprimer(int id) {
-             try {
+         String query = "DELETE FROM Poste WHERE idP = ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setInt(1, id);
+            pst.executeUpdate();
+            System.out.println("Poste with ID " + id + " has been deleted successfully.");
+        } catch (SQLException ex) {
+            System.out.println("Error deleting Poste: " + ex.getMessage());
+        }
+            /* try {
             String req = "DELETE FROM `poste` WHERE idP = " + id;
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             st.executeUpdate(req);
-            System.out.println("poste deleted !");
+            System.out.println("poste Deleted !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }
+        }*/
     }
 
     @Override
-    public void modifier(Poste p) {
-       try {
-        String req = "UPDATE poste SET poste=? WHERE idP=?";
-        PreparedStatement st = MyConnection.getInstance().getCnx().prepareStatement(req);
-        st.setString(1, p.getPoste());
-            st.setInt(2,p.getIdP() );
-            
-            st.executeUpdate();
-        System.out.println("poste updated!");
-    } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
+    public void modifier(Poste poste) {
+        
+        String query = "UPDATE Poste SET poste = ? WHERE idP = ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setString(1, poste.getPoste());
+            pst.setInt(2, poste.getIdP()); // Assuming you have an idP property in the Poste class
 
-  
-
-   
+            pst.executeUpdate();
+            System.out.println("Poste updated successfully.");
+        } catch (SQLException ex) {
+            System.out.println("Error updating Poste: " + ex.getMessage());
+        }
     
+    }
+
+ 
 }
+     
+    
+

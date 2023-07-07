@@ -8,7 +8,8 @@ package edu.connection.entities;
 /**
  *
  * @author ASUS
- */
-public enum TypeLieuTravail {
-    SurSite,Hybride,ADistance
+ **/
+public enum TypeEmploi {
+    TempsPlein,TeempsPartiel,contratCDI,contratSVIP,Stage,Alternance
+    
 }
