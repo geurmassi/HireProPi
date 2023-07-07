@@ -21,7 +21,7 @@ public class Message {
         this.idUserSend = idUserSend;
         this.idUserReceive = idUserReceive;
         this.file = file;
-        this.file = fileName;
+        this.fileName = fileName;
 
     }
 
@@ -77,11 +77,11 @@ public class Message {
     
     
     public String getFileName() {
-        return file;
+        return fileName;
     }
 
     public void setFileName(String fileName) {
-        this.file = file;
+        this.fileName = fileName;
     }
 
     @Override
