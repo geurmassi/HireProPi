@@ -96,6 +96,16 @@ public class FormationCRUD implements ICRUD<Formation> {
     }
     }
 
+    @Override
+    public void updateEntity(Formation t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteEntity(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   
 
 }

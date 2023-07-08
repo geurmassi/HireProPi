@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="HirePro">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/HirePro.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -92,4 +92,14 @@ public class UniversiteCRUD implements ICRUD<Universite> {
       
     
     }
+
+    @Override
+    public void updateEntity(Universite t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteEntity(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

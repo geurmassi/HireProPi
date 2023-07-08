@@ -83,4 +83,14 @@ public class MessageCRUD implements ICRUD<Messages> {
     public void modifier(Messages t) {
     }
 
+    @Override
+    public void updateEntity(Messages t) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteEntity(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

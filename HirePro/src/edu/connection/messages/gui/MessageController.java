@@ -205,7 +205,7 @@ public class MessageController implements Initializable {
                 pdfIcon.setOnMouseClicked(event -> {
                     try {
 
-                        //String userHomeDirectory = System.getProperty("user.home");
+                        //String userHomeDirectory = System.getProperty("user.home");   
                         //String downloadFolderPath = userHomeDirectory + File.separator + "Downloads";
                         // System.out.println(userHomeDirectory);
                         String fileBase64 = convertFileToBase64(message.getFile());
@@ -301,7 +301,8 @@ public class MessageController implements Initializable {
             System.out.println(selectedUser[0]);
             // Call your function or perform any desired actions with the selected user
             getMessagesFromDataBase(selectedUser[0].getId());
-            if (selectedUser[0].getActif() == true) {
+
+            if (selectedUser[0].getActif() == 1) {
                 activeCercle.setStroke(Paint.valueOf("#7FFF65"));
                 activeCercle.setFill(Paint.valueOf("#7FFF65"));
             } else {
@@ -319,7 +320,7 @@ public class MessageController implements Initializable {
     }
 
     private void sendMailWhenUserDisconnected(User userReceive, User objecForUserConnceted) {
-        if (userReceive.getActif() != true) {
+        if (userReceive.getActif() != 1) {
             EmailSender emailSender = new EmailSender();
 
             String recipient = userReceive.getEmail();

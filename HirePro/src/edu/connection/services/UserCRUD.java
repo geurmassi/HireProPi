@@ -42,7 +42,7 @@ public class UserCRUD implements  UserCrud<User>  {
             pst.setString(6, T.getTel());
             pst.setString(7, T.getAdresse());
             pst.setString(8, T.getRole().toString());
-             pst.setBoolean(9, T.getActif());
+             pst.setInt(9, T.getActif());
             pst.executeUpdate();
             System.out.println("personne add");
         } catch (SQLException ex) {
@@ -106,7 +106,7 @@ public class UserCRUD implements  UserCrud<User>  {
             st.setString(6, p.getTel());
             st.setString(7, p.getAdresse());
            st.setString(8, p.getRole().toString());
-            st.setBoolean(9, p.getActif());
+            st.setInt(9, p.getActif());
              st.setInt(10, p.getId());
             st.executeUpdate();
         System.out.println("User updated!");

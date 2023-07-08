@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.AdminAddTest.TestController">
+   <children>
+      <TextField fx:id="NomFromulaireTextFiled" alignment="CENTER" layoutX="244.0" layoutY="46.0" prefHeight="34.0" prefWidth="329.0" />
+      <Label layoutX="16.0" layoutY="53.0" prefHeight="20.0" prefWidth="137.0" text="Nom du Quiz    :">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TableView fx:id="listeQuizTableview" layoutX="73.0" layoutY="210.0" prefHeight="303.0" prefWidth="754.0">
+        <columns>
+          <TableColumn fx:id="titreTableColumn" onEditCommit="#handleTitreTableColumnEdit" prefWidth="753.0" text="Quiz" />
+        </columns>
+      </TableView>
+      <Label layoutX="26.0" layoutY="140.0" prefHeight="34.0" prefWidth="117.0" text="Admin Crud : ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="SupprimerQuiz" layoutX="691.0" layoutY="145.0" mnemonicParsing="false" onAction="#supprimerQuestion" prefHeight="25.0" prefWidth="143.0" text="Supprimer Quiz">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="AjouterQuiz" layoutX="508.0" layoutY="145.0" mnemonicParsing="false" onAction="#AjouterQuiz" prefHeight="25.0" prefWidth="143.0" text="Ajouter Quiz">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="chercherQuiz" layoutX="691.0" layoutY="48.0" mnemonicParsing="false" onAction="#chercherQuestion" prefHeight="25.0" prefWidth="143.0" text="chercherQuiz">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="AfficherQuiz" layoutX="162.0" layoutY="145.0" mnemonicParsing="false" onAction="#AfficherQuiz" prefHeight="25.0" prefWidth="143.0" text="Afficher Quiz">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="ModifierQuiz" layoutX="337.0" layoutY="145.0" mnemonicParsing="false" onAction="#modifierQuiz" prefHeight="25.0" prefWidth="143.0" text="Modifier Quiz">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="AddQueston" layoutX="720.0" layoutY="529.0" mnemonicParsing="false" onAction="#handleAddQuestion" prefHeight="53.0" prefWidth="150.0" text="AddQuestion">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Button fx:id="AfficheTest" layoutX="40.0" layoutY="529.0" mnemonicParsing="false" onAction="#handleAfficheQuestion" prefHeight="53.0" prefWidth="150.0" text="AfficheTest">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

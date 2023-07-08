@@ -43,7 +43,7 @@ public class MainTest {
     MyConnection mc = new MyConnection();
     /* Ajouter et Afficher une personne */ 
    
-        User T = new User("nizar", "mlaouhi",LocalDate.of(1999,7,5),"12345","nizar@esprit.tn","23116224","tunis",Role.recruteur,true);
+        User T = new User("nizar", "mlaouhi",LocalDate.of(1999,7,5),"12345","nizar@esprit.tn","23116224","tunis",Role.recruteur,1);
          UserCRUD U = new UserCRUD();
        // U.addEntity(T);
        User U2 = new User();
@@ -55,7 +55,7 @@ public class MainTest {
          U2.setTel("92455157");
          U2.setAdresse("Le Kram");
          U2.setRole(Role.candidat);
-         U2.setActif(Boolean.FALSE);
+         U2.setActif(1);
          U2.setId(17);
          U.modifier(U2);
          U.supprimer(18);

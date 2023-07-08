@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e0dc2015-0352-4bf9-89fc-51502a61aeef" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/built-jar.properties" beforeDir="false" afterPath="$PROJECT_DIR$/build/built-jar.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/edu/connection/Cloud/QuizCController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/edu/connection/Cloud/QuizCController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/edu/connection/Quiz/BusinessTemplateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/edu/connection/Quiz/BusinessTemplateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/edu/connection/Quiz/StandardTemplateController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/edu/connection/Quiz/StandardTemplateController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/HirePro.jar" beforeDir="false" afterPath="$PROJECT_DIR$/dist/HirePro.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edu/connection/Cloud/QuizCController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/connection/Cloud/QuizCController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edu/connection/Quiz/BusinessTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/connection/Quiz/BusinessTemplateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/edu/connection/Quiz/StandardTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/edu/connection/Quiz/StandardTemplateController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2SIIzA9PRMkM22KI6COhN7IZnjm" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Dell/HireProPi/HirePro"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e0dc2015-0352-4bf9-89fc-51502a61aeef" name="Changes" comment="" />
+      <created>1688827927562</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688827927562</updated>
+      <workItem from="1688827928743" duration="46000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

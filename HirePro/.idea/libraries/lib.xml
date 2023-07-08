@@ -1,0 +1,32 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/lib/progressbar-0.9.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-tools-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/fontbox-3.0.0-alpha3 (1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/log4j-over-slf4j-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/logback-core-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/notification-7.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/itextpdf-5.5.13.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/mysql-connector-java-5.1.23-bin.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jline-3.21.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-tools-2.0.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/preflight-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-app-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/slf4j-api-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/logback-classic-1.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/jcl-over-slf4j-1.7.32.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-2.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-3.0.0-alpha3 (1).jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-debugger-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/pdfbox-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/xmpbox-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/fontbox-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/fontbox-2.0.29.jar!/" />
+      <root url="jar://$PROJECT_DIR$/dist/lib/fontbox-2.0.27.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -4,17 +4,18 @@
  * and open the template in the editor.
  */
 package edu.connection.interfaces;
-
 import java.util.List;
 
 /**
  *
  * @author ASUS
+ * @param <T>
  */
 public interface ICRUD<T>{
     public void addEntity(T t);
     public List<T> displayEntities();
     public void supprimer(int id);
     public void modifier(T t);
-    
+    public void updateEntity(T t);
+   public void deleteEntity(int id);
 }
