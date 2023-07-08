@@ -4,7 +4,7 @@
  */
 package edu.connection.services;
 
-import edu.connection.entities.Message;
+import edu.connection.entities.Messages;
 import edu.connection.interfaces.ICRUD;
 import edu.connection.utils.MyConnection;
 import java.sql.PreparedStatement;
@@ -18,10 +18,10 @@ import java.util.List;
  *
  * @author roamsmart
  */
-public class MessageCRUD implements ICRUD<Message> {
+public class MessageCRUD implements ICRUD<Messages> {
 
     @Override
-    public void addEntity(Message t) {
+    public void addEntity(Messages t) {
         String requete = "INSERT INTO Messages (msg, dateSend, 	idUserSend, idUserReceive,file,fileName ) VALUES" + "(?,?,?,?,?,?)";
         try {
             PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(requete);
@@ -39,14 +39,14 @@ public class MessageCRUD implements ICRUD<Message> {
     }
 
     @Override
-    public List<Message> displayEntities() {
-        List<Message> myList = new ArrayList<>();
+    public List<Messages> displayEntities() {
+        List<Messages> myList = new ArrayList<>();
         try {
             String requete = "SELECT*FROM Messages";
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(requete);
             while (rs.next()) {
-                Message M= new Message();
+                Messages M= new Messages();
                 M.setIdMsg(rs.getInt(1));
                 M.setMsg(rs.getString(2));
                 M.setDateSend(rs.getTimestamp(3));
@@ -80,7 +80,7 @@ public class MessageCRUD implements ICRUD<Message> {
     }
 
     @Override
-    public void modifier(Message t) {
+    public void modifier(Messages t) {
     }
 
 }

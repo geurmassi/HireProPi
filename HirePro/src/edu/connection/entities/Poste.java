@@ -7,8 +7,10 @@ package edu.connection.entities;
 
 /**
  *
- * @author hadil ibenhajfraj
+ * @author ASUS
  */
+
+ 
 public class Poste {
     private int idP;
     private String poste;
@@ -16,9 +18,14 @@ public class Poste {
     public Poste() {
     }
 
-    public Poste( String poste) {
+    public Poste(int idP, String poste) {
+        this.idP=idP;
         this.poste = poste;
     }
+    public Poste(String poste) {
+        this.poste = poste;
+    }
+
 
     public int getIdP() {
         return idP;
@@ -40,6 +47,5 @@ public class Poste {
     public String toString() {
         return "Poste{" + "idP=" + idP + ", poste=" + poste + '}';
     }
-    
     
 }

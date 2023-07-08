@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/messages/gui/MessageController.java</file>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/entities/Message.java</file>
             <file>file:/C:/Users/haith/Downloads/HirePro-Kamel/HirePro/src/edu/connection/tests/MainTest.java</file>
-=======
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/tests/TestFXML.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/tests/SMSNotifier.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/entities/User.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/services/UserCRUD.java</file>
             <file>file:/C:/Users/Admin/OneDrive/Bureau/piNewRepo/HireProPi/src/edu/connection/gui/LoginFXMLController.java</file>
->>>>>>> 57a1d5b0a3f9ea011c84dc31fe074845d59b672b
-        </group>
+
     </open-files>
 </project-private>

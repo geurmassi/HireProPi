@@ -3,7 +3,7 @@ package edu.connection.entities;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
-public class Message {
+public class Messages {
     private int idMsg;
     private String msg;
     private Timestamp dateSend;
@@ -12,10 +12,10 @@ public class Message {
     private String file; // Added file field
     private String fileName;
 
-    public Message() {
+    public Messages() {
     }
 
-    public Message(String msg, Timestamp dateSend, int idUserSend, int idUserReceive,String file,String fileName) {
+    public Messages(String msg, Timestamp dateSend, int idUserSend, int idUserReceive,String file,String fileName) {
         this.msg = msg;
         this.dateSend = dateSend;
         this.idUserSend = idUserSend;

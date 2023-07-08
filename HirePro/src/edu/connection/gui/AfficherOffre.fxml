@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="757.0" prefWidth="1409.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui.AfficherOffreController">
+    <stylesheets>
+        <URL value="@afficheroffre.css" />
+    </stylesheets>
+    <children>
+        <TableView fx:id="tableViewOffre" layoutX="4.0" layoutY="111.0" prefHeight="646.0" prefWidth="1404.0">
+            <columns>
+                <TableColumn fx:id="colJobHolder" prefWidth="115.0" text="jobHolder" />
+                <TableColumn fx:id="colLieuT" prefWidth="76.0" text="Workplace" />
+                <TableColumn fx:id="colDescriptif" prefWidth="435.0" text="Description" />
+                <TableColumn fx:id="colSkills" prefWidth="213.0" text="Skills" />
+                <TableColumn fx:id="colCompany" prefWidth="166.0" text="Company" />
+                <TableColumn fx:id="colDateDebutOffre" prefWidth="81.0" text="Start Date" />
+                <TableColumn fx:id="colDateFinOffre" prefWidth="72.0" text="End Date" />
+                <TableColumn fx:id="colTypeEmploi" minWidth="0.0" prefWidth="68.0" text="TypeJob" />
+                <TableColumn fx:id="colTypeLieuTravail" prefWidth="100.0" text="TypeWorkplace" />
+                <TableColumn fx:id="colReceptionOfApplication" prefWidth="74.0" text="ReceptionOfApplication" />
+            <TableColumn fx:id="colIdOffre" minWidth="5.0" prefWidth="49.0" text="idOffre" visible="false" />
+            </columns>
+        </TableView>
+        <Text fill="#c30808" layoutX="512.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List job offer details" textAlignment="CENTER">
+            <font>
+                <Font name="Arial Bold Italic" size="41.0" />
+            </font>
+        </Text>
+        <Button fx:id="btnUpdate" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleUpdateButton" text="Update" textFill="#9a0be1">
+            <font>
+                <Font name="Arial Bold" size="20.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnDelete" layoutX="124.0" layoutY="64.0" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete" textFill="#eb0d1c">
+            <font>
+                <Font name="Arial Bold" size="20.0" />
+            </font>
+        </Button>
+        <Button fx:id="btnClose" layoutX="1340.0" layoutY="7.0" mnemonicParsing="false" onAction="#handleCloseButton" text="Close" textFill="#d94161">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+      <Button fx:id="btnNew" layoutX="222.0" layoutY="64.0" mnemonicParsing="false" onAction="#handlebtnNew" text="Add New Offre" textFill="#078d80">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="searchTextField" layoutX="403.0" layoutY="63.0" prefHeight="35.0" prefWidth="998.0" promptText="Dynamic Search..!!">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+    </children>
+</AnchorPane>

@@ -9,12 +9,12 @@ import java.util.List;
 
 /**
  *
- * @author hadil ibenhajfraj
+ * @author ASUS
  */
-public interface ICRUD <T>{
+public interface ICRUD<T>{
     public void addEntity(T t);
     public List<T> displayEntities();
-     public void supprimer(int id);
+    public void supprimer(int id);
     public void modifier(T t);
-       
+    
 }

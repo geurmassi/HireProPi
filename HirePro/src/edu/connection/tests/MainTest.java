@@ -15,22 +15,31 @@ import edu.connection.entities.Universite;
 import edu.connection.entities.User;
 import edu.connection.services.ExperienceCRUD;
 import edu.connection.services.FormationCRUD;
-import edu.connection.services.PosteCRUD;
+import edu.connection.services.PosteCrud;
 import edu.connection.services.SkillsCRUD;
 import edu.connection.services.SocieteCRUD;
 import edu.connection.services.UniversiteCRUD;
 import edu.connection.services.UserCRUD;
 import edu.connection.utils.MyConnection;
 import java.sql.Date;
+import edu.connection.entities.Offre;
+import edu.connection.entities.Poste;
+import edu.connection.entities.ReceptionOfApplication;
+import edu.connection.entities.TypeEmploi;
+import edu.connection.entities.TypeLieuTravail;
+import edu.connection.services.OffreEmploiCrud;
+import edu.connection.services.PosteCrud;
+import edu.connection.utils.MyConnection;
 import java.time.LocalDate;
 import java.util.List;
 
 /**
  *
- * @author hadil ibenhajfraj
+ * @author ASUS
  */
 public class MainTest {
-     public static void main (String[] args){
+    
+      public static void main (String[] args){
     MyConnection mc = new MyConnection();
     /* Ajouter et Afficher une personne */ 
    
@@ -143,7 +152,7 @@ public class MainTest {
       
          
          Poste po = new Poste("Developpeur IOS");
-         PosteCRUD pc = new PosteCRUD();
+         PosteCrud pc = new PosteCrud();
          //pc.addEntity(po);
          Poste P = new Poste();
          P.setPoste("Developpeur IOS et Android ");
@@ -162,8 +171,11 @@ public class MainTest {
       UC.supprimer(11);
        UC.supprimer(13);
      }
+   
+
 
     
+
 }
     
 

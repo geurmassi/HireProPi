@@ -5,7 +5,7 @@
  */
 package edu.connection.messages.gui;
 
-import edu.connection.entities.Message;
+import edu.connection.entities.Messages;
 import edu.connection.entities.User;
 import edu.connection.services.EmailSender;
 import edu.connection.services.MessageCRUD;
@@ -150,10 +150,10 @@ public class MessageController implements Initializable {
      */
     public void getMessagesFromDataBase(int userReceive) {
         MessageCRUD MC = new MessageCRUD();
-        List<Message> messageList = MC.displayEntities();
+        List<Messages> messageList = MC.displayEntities();
         HBox hbox = new HBox();
         VBox.setMargin(hbox, new Insets(0, 0, 0, 0));
-        for (Message message : messageList) {
+        for (Messages message : messageList) {
             String msg = message.getMsg();
             // msg= TranslationAPI.translateText(msg, "ang");
             String filename = message.getFileName();
@@ -353,7 +353,7 @@ public class MessageController implements Initializable {
     private void saveMessages(User userReceive, User objecForUserConnceted) {
         String msg = tf_message.getText();
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        Message M = new Message(msg, timestamp, userConnected, userReceive.getId(), filePath, fileName);
+        Messages M = new Messages(msg, timestamp, userConnected, userReceive.getId(), filePath, fileName);
         MessageCRUD MC = new MessageCRUD();
         MC.addEntity(M);
         tf_message.clear();
