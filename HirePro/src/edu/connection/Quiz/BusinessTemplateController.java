@@ -1,18 +1,8 @@
 package edu.connection.Quiz;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-
 
 import java.net.URL;
 import java.sql.Connection;
@@ -23,12 +13,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.font.PDType0Font;
 
 public class BusinessTemplateController implements Initializable {
 private BigDecimal decimalValue;
@@ -326,36 +327,42 @@ private void PrintPDF(ActionEvent event) {
     try {
         // Retrieve data from the database
         List<String> actionHistory = retrieveActionHistoryFromDatabase(); // Replace with your own method for retrieving the action history
-        try ( // Process the data and generate the PDF document
-                PDDocument document = new PDDocument()) {
+        try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
-            
+
+            // Load custom font
+          // Load custom font
+         InputStream fontStream = getClass().getResourceAsStream("/fonts/Helvetica-Bold.ttf");
+         PDType0Font font = PDType0Font.load(document, fontStream);
+
+
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                float fontSize = 0;
+                contentStream.setFont(font, fontSize);
                 contentStream.beginText();
                 contentStream.newLineAtOffset(100, 700);
-                
+
                 // Add the action history to the PDF document
                 for (String action : actionHistory) {
                     contentStream.showText(action);
                     contentStream.newLine();
                 }
-                
+
                 contentStream.endText();
             }
-            
-            document.save("C:/Users/Dell/Documents/NetBeansProjects/HirePro/output.pdf");
+
+            document.save("C:/Users/Dell/output.pdf");
+
+            // Perform any additional actions after saving the PDF
+
+            // For example, you can show a success message to the user
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Print PDF");
+            alert.setHeaderText(null);
+            alert.setContentText("PDF printed successfully!");
+            alert.showAndWait();
         }
-
-        // Perform any additional actions after printing the PDF
-
-        // For example, you can show a success message to the user
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Print PDF");
-        alert.setHeaderText(null);
-        alert.setContentText("PDF printed successfully!");
-        alert.showAndWait();
     } catch (IOException e) {
         // Handle the exception appropriately (log or display an error message)
         Alert alert = new Alert(Alert.AlertType.ERROR);

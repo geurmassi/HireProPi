@@ -2,7 +2,6 @@ package edu.connection.Cloud;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -12,6 +11,9 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -73,7 +75,13 @@ public class QuizCController implements Initializable {
         FT_BUTTON.setOnAction(event -> displayScore());
         checkAnswerBtn.setDisable(true); // Disable the "checkAnswerBtn" button initially
 
-        checkAnswerBtn.setOnAction(event -> showCorrectAnswer());
+        checkAnswerBtn.setOnAction(event -> {
+            try {
+                showCorrectAnswer();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(QuizCController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     private void displayScore() {
@@ -128,7 +136,7 @@ public class QuizCController implements Initializable {
         return level;
     }
 
-    private void showCorrectAnswer() {
+    private void showCorrectAnswer() throws FileNotFoundException {
     // Set the selected state of the checkboxes
     FT_R14.setSelected(true);
     FT_R11.setSelected(false);
@@ -162,7 +170,7 @@ public class QuizCController implements Initializable {
 }
 
 
-   private void generatePDF() {
+   private void generatePDF() throws FileNotFoundException {
     Document document = new Document();
 
     try {
@@ -227,8 +235,7 @@ public class QuizCController implements Initializable {
 
             System.out.println("PDF created successfully.");
         }
-    } catch (DocumentException | IOException e) {
-        e.printStackTrace();
+    } catch (DocumentException e) {
     }
 }
 
