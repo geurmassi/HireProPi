@@ -52,7 +52,7 @@ public class ExperienceCRUD implements ICRUD<Experience> {
                 Experience U = new Experience();
                 U.setIdEx(rs.getInt(1));
                 U.setTitreExp(rs.getString("TitreExp"));
-                 //U.setDateDebut(rs.getDate("DateDebut"));
+                 //U.setDateDebut(Date.valueOf(rs.getDateDebut()));
                   //U.setDateFin(rs.getDate("DateFin"));
                    U.setDetails(rs.getString("Details"));
                    U.setIdskills(rs.getInt("idSkills"));

@@ -25,6 +25,8 @@ public class Formation {
     private int idUser;
     private int idUniversity;
     private int idSkills;
+    private Universite universite;
+
 
     public Formation() {
     }
@@ -39,6 +41,13 @@ public class Formation {
         this.idSkills = idSkills;
     }
 
+    public Formation( String diplome, LocalDate dateDebutFormation, LocalDate dateFin,Universite universite) {
+      
+        this.diplome = diplome;
+        this.dateDebutFormation = dateDebutFormation;
+        this.dateFin = dateFin;
+      this.universite=universite;
+    }
    
 
    
@@ -125,8 +134,18 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "Formation{" + "idF=" + idF + ", diplome=" + diplome + ", dateDebutFormation=" + dateDebutFormation + ", dateFin=" + dateFin + ", idUser=" + idUser + ", idUniversity=" + idUniversity + ", idSkills=" + idSkills + '}';
+        return universite+"Formation{" + "idF=" + idF + ", diplome=" + diplome + ", dateDebutFormation=" + dateDebutFormation + ", dateFin=" + dateFin + ", idUser=" + idUser + ", idUniversity=" + idUniversity + ", idSkills=" + idSkills + ", Universite="+universite+ '}';
     }
+
+   
+
+    public void setUniversite(Universite universite) {
+    this.universite = universite;
+}
+public Universite getUniversite() {
+        return universite;
+    }
+// Assuming you have the following instance variable in the Formation class
 
    
 

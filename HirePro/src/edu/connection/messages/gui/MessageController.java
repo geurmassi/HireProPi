@@ -301,7 +301,7 @@ public class MessageController implements Initializable {
             System.out.println(selectedUser[0]);
             // Call your function or perform any desired actions with the selected user
             getMessagesFromDataBase(selectedUser[0].getId());
-            if (selectedUser[0].getActif() == 1) {
+            if (selectedUser[0].getActif() == true) {
                 activeCercle.setStroke(Paint.valueOf("#7FFF65"));
                 activeCercle.setFill(Paint.valueOf("#7FFF65"));
             } else {
@@ -319,7 +319,7 @@ public class MessageController implements Initializable {
     }
 
     private void sendMailWhenUserDisconnected(User userReceive, User objecForUserConnceted) {
-        if (userReceive.getActif() != 1) {
+        if (userReceive.getActif() != true) {
             EmailSender emailSender = new EmailSender();
 
             String recipient = userReceive.getEmail();

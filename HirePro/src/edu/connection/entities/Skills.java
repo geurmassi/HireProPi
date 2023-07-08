@@ -12,6 +12,7 @@ package edu.connection.entities;
 public class Skills {
      private int idS;
     private String libelle;
+    private int user;
 
     public Skills() {
     }
@@ -20,9 +21,22 @@ public class Skills {
         this.idS = idS;
         this.libelle = libelle;
     }
+
+    public Skills(String libelle, int user) {
+        this.libelle = libelle;
+        this.user = user;
+    }
      public Skills( String libelle) {
        
         this.libelle = libelle;
+    }
+
+    public void setUser(int user) {
+        this.user = user;
+    }
+
+    public int getUser() {
+        return user;
     }
 
     public int getIdS() {
@@ -43,8 +57,10 @@ public class Skills {
 
     @Override
     public String toString() {
-        return "skills{" + "idS=" + idS + ", libelle=" + libelle + '}';
+        return "Skills{" + "idS=" + idS + ", libelle=" + libelle + ", user=" + user + '}';
     }
+
+   
      
     
 }
