@@ -29,6 +29,16 @@ public class User {
     private Skills skills;
     private Experience experience;
     private Object formations;
+    private boolean blocked;
+
+    // Ajoutez des constructeurs, des getters et des setters pour les autres champs
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
 
     public List<Formation> getFormations() {
         if (formations == null) {

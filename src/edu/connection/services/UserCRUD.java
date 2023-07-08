@@ -417,6 +417,27 @@ public void updateUserInActiveStatus(String email, int activeStatus) {
 
         return null; // No user found or an error occurred
     }
+public String getPhoneNumberByEmail(String email) {
+    String phoneNumber = null;
+    
+    // Exemple d'utilisation de JDBC pour exécuter la requête
+    try (
+         PreparedStatement statement = MyConnection.getInstance().getCnx().prepareStatement("SELECT tel FROM user WHERE email = ?")) {
+      
+        statement.setString(1, email);
+        ResultSet resultSet = statement.executeQuery();
+        
+        if (resultSet.next()) {
+            phoneNumber = resultSet.getString("tel");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return phoneNumber;
+}
+
+
 }
 
   

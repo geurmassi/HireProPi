@@ -41,6 +41,13 @@ public class Formation {
         this.idSkills = idSkills;
     }
 
+    public Formation( String diplome, LocalDate dateDebutFormation, LocalDate dateFin,Universite universite) {
+      
+        this.diplome = diplome;
+        this.dateDebutFormation = dateDebutFormation;
+        this.dateFin = dateFin;
+      this.universite=universite;
+    }
    
 
    

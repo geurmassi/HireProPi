@@ -6,6 +6,7 @@
 package edu.connection.gui;
 
 import edu.connection.services.UserCRUD;
+import edu.connection.tests.SMSNotifier;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
@@ -60,12 +61,18 @@ public class LoginFXMLController implements Initializable {
     private int loginAttempts = 0;
     @FXML
     private TextField login_selectPassword;
+
     /**
      * Initializes the controller class.
      */
-    
+
+    /**
+     * Initializes the controller class.
+     *
+     * @param event
+     */
     @FXML
-public void login(ActionEvent event) {
+    public void login(ActionEvent event) {
         AlertMessage alert = new AlertMessage();
         if (login_email.getText().isEmpty() || login_password.getText().isEmpty()) {
             alert.errorMessage("Incorrect UserName/Password");
@@ -75,93 +82,82 @@ public void login(ActionEvent event) {
 
             UserCRUD userService = new UserCRUD();
             boolean credentialsValid = userService.checkCredentials(email, password);
- 
+
             if (credentialsValid) {
                 alert.SuccessMessage("Successfully logged in!!");
+                // Le reste de votre code...
+
+                // Déterminer le rôle de l'utilisateur en fonction de loginEmail
+                // Supposons que vous ayez une méthode pour déterminer si l'utilisateur est un recruteur
+                String loginEmail = login_email.getText();
+                boolean isRecruiter = userService.isRecruiter(loginEmail);
+                try {
+                    FXMLLoader loader;
+                    Parent profileRoot;
+                    if (isRecruiter) {
+                        System.out.println("1- Success.....");
+                        // Charger RecruteurFXML.fxml pour les recruteurs
+                        loader = new FXMLLoader(getClass().getResource("RecruteurFXML.fxml"));
+                        profileRoot = loader.load();
+                        System.out.println("2- Success.....");
+                        RecruteurFXMLController recruteurController = loader.getController();
+                        recruteurController.setPersonalInformation(loginEmail);
+                        System.out.println("3- Success.....");
+                    } else {
+                        // Charger ProfilFXML.fxml pour les non-recruteurs
+                        System.out.println("1- Fail......");
+                        loader = new FXMLLoader(getClass().getResource("ProfilFXML.fxml"));
+                        profileRoot = loader.load();
+                        ProfileController profileController = loader.getController();
+                        profileController.setPersonalInformation(loginEmail);
+                        profileController.setPersonalScolaire(loginEmail);
+                        profileController.setPersonalExperience(loginEmail);
+                        System.out.println("3- Fail......");
+                    }
+
+                    Scene profileScene = new Scene(profileRoot);
+                    Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    primaryStage.setScene(profileScene);
+                    primaryStage.show();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             } else {
                 loginAttempts++;
                 if (loginAttempts >= 3) {
                     // Bloquer l'utilisateur
-                   userService.blockUser(email);
+                    userService.blockUser(email);
+                    String phoneNumber = userService.getPhoneNumberByEmail(email); // Récupérez le numéro de téléphone de l'utilisateur depuis la base de données
+                    SMSNotifier.sendBlockedNotification(phoneNumber);
                     alert.errorMessage("Incorrect UserName/Password. Your account has been blocked.");
                 } else {
                     alert.errorMessage("Incorrect UserName/Password");
                 }
             }
         }
-        // Le reste de votre code...
-        
+    }
 
-        // Déterminer le rôle de l'utilisateur en fonction de loginEmail
-          // Supposons que vous ayez une méthode pour déterminer si l'utilisateur est un recruteur
-          UserCRUD userService = new UserCRUD();
-          String loginEmail = login_email.getText();
-boolean isRecruiter = userService.isRecruiter(loginEmail);
-        try {
-            if (event.getSource() == login_btn) {
-                FXMLLoader loader;
-                Parent profileRoot;
-                if (isRecruiter) {
-                    System.out.println("1- Success.....");
-                    // Charger RecruteurFXML.fxml pour les recruteurs
-                    loader = new FXMLLoader(getClass().getResource("RecruteurFXML.fxml"));
-                    profileRoot = loader.load();
-                    System.out.println("2- Success.....");
-                    RecruteurFXMLController recruteurController = loader.getController();
-                    recruteurController.setPersonalInformation(loginEmail);
-                    System.out.println("3- Success.....");
-                } else {
-                    // Charger ProfilFXML.fxml pour les non-recruteurs
-                    System.out.println("1- Fail......");
-                    loader = new FXMLLoader(getClass().getResource("ProfilFXML.fxml"));
-                    profileRoot = loader.load();
-                    ProfileController profileController = loader.getController();
-                    profileController.setPersonalInformation(loginEmail);
-                    profileController.setPersonalScolaire(loginEmail);
-                    profileController.setPersonalExperience(loginEmail);
-                    System.out.println("3- Fail......");
-                }
-
-                Scene profileScene = new Scene(profileRoot);
-                Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                primaryStage.setScene(profileScene);
-                primaryStage.show();
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    @FXML
+    public void showPassword() {
+        if (login_showPassword.isSelected()) {
+            login_selectPassword.setText(login_password.getText());
+            login_selectPassword.setVisible(true);
+            login_password.setVisible(false);
+        } else {
+            login_password.setText(login_selectPassword.getText());
+            login_selectPassword.setVisible(false);
+            login_password.setVisible(true);
         }
     }
 
-
-  
-
-
-    @FXML
-   public void showPassword() {
-    if (login_showPassword.isSelected()) {
-        login_selectPassword.setText(login_password.getText());
-       login_selectPassword.setVisible(true);
-        login_password.setVisible(false);
-    } else {
-        login_password.setText(login_selectPassword.getText());
-       login_selectPassword.setVisible(false);
-        login_password.setVisible(true);
-    }
-}
-
-             
-
-                   
-
-                    
-   public void setLoginFormVisible(boolean visible) {
+    public void setLoginFormVisible(boolean visible) {
         LoginForm.setVisible(visible);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     public void setLogin_email(TextField login_email) {
         this.login_email = login_email;
@@ -189,14 +185,12 @@ boolean isRecruiter = userService.isRecruiter(loginEmail);
 
     @FXML
     private void registerBtn(ActionEvent event) {
-         try {
+        try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("RegisterFXML.fxml"));
-           
 
             if (event.getSource() == login_createdAccount) {
                 // Cacher le formulaire SignUpForm
-               
 
                 Parent loginroot = loader.load();
 
@@ -213,14 +207,12 @@ boolean isRecruiter = userService.isRecruiter(loginEmail);
 
     @FXML
     private void PasswordForget(ActionEvent event) {
-          try {
+        try {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EmailVerficiation.fxml"));
-           
 
             if (event.getSource() == login_forgetPassword) {
                 // Cacher le formulaire SignUpForm
-               
 
                 Parent loginroot = loader.load();
 
@@ -235,13 +227,4 @@ boolean isRecruiter = userService.isRecruiter(loginEmail);
         }
     }
 
-
-  
-
-
-    
-    
-
-    
-    
 }
