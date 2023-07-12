@@ -12,7 +12,7 @@
 
 <VBox alignment="center" spacing="10" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui.ProfileController">
     <TabPane prefWidth="400">
-        <Tab text="Informations personnelles">
+        <Tab text="Informations personnelles" closable="false">
             <VBox spacing="10">
                 <Label text="Prénom :" />
                 <TextField fx:id="firstNameTextField" />
@@ -82,5 +82,5 @@
             </VBox>
         </Tab>
     </TabPane>
-   <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logout" text="Déconnecter " />
+    <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#logout" text="Déconnecter" />
 </VBox>
