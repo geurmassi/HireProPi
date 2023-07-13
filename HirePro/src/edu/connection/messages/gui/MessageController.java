@@ -59,6 +59,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.transform.Scale;
 import edu.connection.services.TranslationAPI;
+import javafx.scene.control.Alert;
 
 /**
  * FXML Controller class
@@ -71,6 +72,8 @@ public class MessageController implements Initializable {
     private AnchorPane ap_main;
     @FXML
     private ImageView button_send;
+    @FXML
+    private ImageView button_upload;
     @FXML
     private TextField tf_message;
     @FXML
@@ -114,7 +117,7 @@ public class MessageController implements Initializable {
     }
 
     @FXML
-    private void handleUploadButtonClick(ActionEvent event) throws IOException {
+    private void handleUploadButtonClick() throws IOException {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select File to Upload");
         Stage stage = (Stage) ap_main.getScene().getWindow();
@@ -188,52 +191,45 @@ public class MessageController implements Initializable {
             removeIcon.setFitHeight(20);
             removeIcon.setFitWidth(30);
             removeIcon.setOnMouseClicked(event -> {
-                removeMessages(message.getIdMsg(),objectSelectedUser);
+                removeMessages(message.getIdMsg(), objectSelectedUser);
 
-                });
-            
-            
-            
-            
-            
-            
+            });
+
             String pdfIconPath = "C:\\Users\\haith\\Downloads\\HirePro-Kamel\\HirePro\\src\\images\\pdfIcon.png";
-                Image pdfIconImage = new Image(new File(pdfIconPath).toURI().toString());
-                ImageView pdfIcon = new ImageView(pdfIconImage);
-                pdfIcon.setFitHeight(20);
-                pdfIcon.setFitWidth(30);
-                pdfIcon.setOnMouseClicked(event -> {
-                    try {
+            Image pdfIconImage = new Image(new File(pdfIconPath).toURI().toString());
+            ImageView pdfIcon = new ImageView(pdfIconImage);
+            pdfIcon.setFitHeight(20);
+            pdfIcon.setFitWidth(30);
+            pdfIcon.setOnMouseClicked(event -> {
+                try {
 
-                        //String userHomeDirectory = System.getProperty("user.home");
-                        //String downloadFolderPath = userHomeDirectory + File.separator + "Downloads";
-                        // System.out.println(userHomeDirectory);
-                        String fileBase64 = convertFileToBase64(message.getFile());
-                        downloadFileFromBase64(fileBase64, "C:\\Users\\haith\\Downloads\\" + filename + ".pdf");
-                    } catch (IOException ex) {
-                        System.out.println(ex.getMessage());
-                    }
+                    //String userHomeDirectory = System.getProperty("user.home");
+                    //String downloadFolderPath = userHomeDirectory + File.separator + "Downloads";
+                    // System.out.println(userHomeDirectory);
+                    String fileBase64 = convertFileToBase64(message.getFile());
+                    downloadFileFromBase64(fileBase64, "C:\\Users\\haith\\Downloads\\" + filename + ".pdf");
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
 
-                });
-                // Create a VBox to hold the pdfIcon and the fileNameLabel
-                VBox vbox = new VBox();
+            });
+            // Create a VBox to hold the pdfIcon and the fileNameLabel
+            VBox vbox = new VBox();
 
-                vbox.setMinHeight(10);
+            vbox.setMinHeight(10);
 
-                // Add the pdfIcon to the VBox
-                vbox.getChildren().add(pdfIcon);
+            // Add the pdfIcon to the VBox
+            vbox.getChildren().add(pdfIcon);
 
-                // Create a Label for the file name
-                Label fileNameLabel = new Label(filename);
+            // Create a Label for the file name
+            Label fileNameLabel = new Label(filename);
 
-                // Add some spacing between the pdfIcon and the file name label
-                vbox.setSpacing(5);
+            // Add some spacing between the pdfIcon and the file name label
+            vbox.setSpacing(5);
 
-                // Add the fileNameLabel to the VBox
-                vbox.getChildren().add(fileNameLabel);
-            
-            
-            
+            // Add the fileNameLabel to the VBox
+            vbox.getChildren().add(fileNameLabel);
+
             hbox = new HBox();
 
             textFlow.setPadding(new Insets(5, 5, 5, 10));
@@ -247,9 +243,10 @@ public class MessageController implements Initializable {
                 hbox.getChildren().add(translateIcon);
                 hbox.getChildren().add(removeIcon);
                 // Add the VBox to the HBox
-                if (message.getFile()!=null){hbox.getChildren().add(vbox);}
-                
-                
+                if (message.getFile() != null) {
+                    hbox.getChildren().add(vbox);
+                }
+
             } else if (idUserSend == userReceive && idUserReceive == userConnected) {
                 hbox.setAlignment(Pos.CENTER_RIGHT);
                 textFlowCSS = "-fx-background-color:rgb(180,180,180); -fx-background-radius: 10;";
@@ -257,7 +254,9 @@ public class MessageController implements Initializable {
                 hbox.getChildren().add(translateIcon);
                 hbox.getChildren().add(removeIcon);
                 // Add the VBox to the HBox
-                  if (message.getFile()!=null){hbox.getChildren().add(vbox);}
+                if (message.getFile() != null) {
+                    hbox.getChildren().add(vbox);
+                }
                 hbox.getChildren().add(textFlow);
 
             }
@@ -291,6 +290,8 @@ public class MessageController implements Initializable {
         final User[] selectedUser = {null};
 
         usersChoiceBox.setOnAction((event) -> {
+            badwords(tf_message);
+
             // Get the selected users
             String selectedUserfromChoice = usersChoiceBox.getValue();
             // Retrieve the corresponding user object
@@ -301,6 +302,7 @@ public class MessageController implements Initializable {
             System.out.println(selectedUser[0]);
             // Call your function or perform any desired actions with the selected user
             getMessagesFromDataBase(selectedUser[0].getId());
+            System.out.println(selectedUser[0].getActif());
             if (selectedUser[0].getActif() == 1) {
                 activeCercle.setStroke(Paint.valueOf("#7FFF65"));
                 activeCercle.setFill(Paint.valueOf("#7FFF65"));
@@ -350,9 +352,33 @@ public class MessageController implements Initializable {
         }
     }
 
+    private List<String> badWords = Arrays.asList("badword1", "badword2", "badword3","test");
+
+    public void badwords(TextField tf_message) {
+        tf_message.setOnKeyReleased(event -> {
+            String text = tf_message.getText().toLowerCase();
+            for (String badWord : badWords) {
+                if (text.contains(badWord)) {
+                    showAlert("Contenu inapproprié détecté", "Veuillez éviter d'utiliser des mots inappropriés.");
+                    break;
+                }
+            }
+        });
+    }
+
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     private void saveMessages(User userReceive, User objecForUserConnceted) {
         String msg = tf_message.getText();
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        if (msg.length()>0){
+        
+         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         Message M = new Message(msg, timestamp, userConnected, userReceive.getId(), filePath, fileName);
         MessageCRUD MC = new MessageCRUD();
         MC.addEntity(M);
@@ -363,15 +389,17 @@ public class MessageController implements Initializable {
         getMessagesFromDataBase(userReceive.getId());
 
         sendMailWhenUserDisconnected(userReceive, objecForUserConnceted);
+        }
+       
     }
-    
-    private void removeMessages(int msgId,User userReceive) {
+
+    private void removeMessages(int msgId, User userReceive) {
         MessageCRUD MC = new MessageCRUD();
-         MC.supprimer(msgId);
-         // Clear the sp_main ScrollPane content
+        MC.supprimer(msgId);
+        // Clear the sp_main ScrollPane content
         VBox content = (VBox) sp_main.getContent();
         content.getChildren().clear();
-         getMessagesFromDataBase(userReceive.getId());
+        getMessagesFromDataBase(userReceive.getId());
     }
 
 }
