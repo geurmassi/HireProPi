@@ -19,11 +19,11 @@ public class TestFXML extends Application {
             FXMLLoader loader = new FXMLLoader(realurl);
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            
+
             primaryStage.setScene(scene);
             primaryStage.setTitle("Create Offsre");
             primaryStage.show();
-            
+
             AddOffreFXMLController addOffreFxmlController = loader.getController();
             addOffreFxmlController.setPrimaryStage(primaryStage);
         } catch (IOException ex) {

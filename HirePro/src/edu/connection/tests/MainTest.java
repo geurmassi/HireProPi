@@ -30,8 +30,8 @@ public class MainTest {
           System.out.println(PS.displayEntities());
     // Offre CRUD
     Poste p2 = new Poste("Senior Full stack JS");
-     Offre o1 = new Offre ("Software Engineer","Canada", "Ingénieur full stack avec des connaissances","NodeJS  JavaScript","SagemCom", LocalDate.of(2020, 5, 17),LocalDate.of(2021, 8, 31),TypeEmploi.TempsPlein,TypeLieuTravail.Hybride,ReceptionOfApplication.ByEmail);
-     Offre o2 = new Offre ("Senior Full stack JS","Suisse", "Ingénieur full stack avec des connaissances","NodeJS  JavaScript","SagemCom", LocalDate.of(2020, 5, 17),LocalDate.of(2021, 8, 31),TypeEmploi.TempsPlein,TypeLieuTravail.SurSite,ReceptionOfApplication.ByEmail);
+     Offre o1 = new Offre ("Software Engineer","Canada", "Ingénieur full stack avec des connaissances","NodeJS  JavaScript","SagemCom", LocalDate.of(2020, 5, 17),LocalDate.of(2021, 8, 31),TypeEmploi.TempsPlein,TypeLieuTravail.Hybride,ReceptionOfApplication.ByEmail,2);
+     Offre o2 = new Offre ("Senior Full stack JS","Suisse", "Ingénieur full stack avec des connaissances","NodeJS  JavaScript","SagemCom", LocalDate.of(2020, 5, 17),LocalDate.of(2021, 8, 31),TypeEmploi.TempsPlein,TypeLieuTravail.SurSite,ReceptionOfApplication.ByEmail,2);
      
          OffreEmploiCrud OES = new OffreEmploiCrud();
           OES.addEntity(o1);

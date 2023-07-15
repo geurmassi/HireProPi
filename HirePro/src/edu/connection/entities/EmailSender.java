@@ -11,12 +11,14 @@ import java.util.Properties;
 
 public class EmailSender {
 
-    private String from = "marwen.achouri@etudiant-isi.utm.tn";
+    //private String from = "marwen.achouri@etudiant-isi.utm.tn";
+    private String from = "marwen.achouri@esprit.tn";
+    
     private boolean sessionDebug = false;
 
     public void sendEmailToSAMU(String to, String subject, String messageText, Offre offre) {
-        String username = "marwen.achouri@etudiant-isi.utm.tn";
-        String password = "221SMT2220";
+        String username = "marwenachouri1000@gmail.com";
+        String password = "221SMT2220+++";
 
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
@@ -33,7 +35,7 @@ public class EmailSender {
         try {
             MimeMessage emailMessage = new MimeMessage(session);
             emailMessage.setFrom(new InternetAddress(from));
-            emailMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            emailMessage.setRecipients(javax.mail.Message.RecipientType.TO, InternetAddress.parse(to));
             emailMessage.setSubject(subject);
 
             // Create the HTML message body part

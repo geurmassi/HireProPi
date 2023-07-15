@@ -5,69 +5,62 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b7d081b-a700-43ac-877f-aad97b858b70" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/entities/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Experience.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Experience.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Formation.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Formation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Offre.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Offre.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Poste.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Poste.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Skills.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Skills.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Societe.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Societe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/TypeLieuTravail.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/TypeLieuTravail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/TypeTravail.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/TypeTravail.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Universite.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/Universite.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/interfaces/ICRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/interfaces/ICRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/ExperienceCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/ExperienceCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/FormationCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/FormationCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/OffreCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/OffreCRUD.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/tests/TestFxmlMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/EmailSender.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/entities/EmailSender.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AddOffreFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AddOffreFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherOffre.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherOffre.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherOffreController.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherOffreController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherPoste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/gui/AfficherPoste.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/PosteCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/PosteCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/SkillsCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/SkillsCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/SocieteCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/SocieteCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/UniversiteCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/UniversiteCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/UserCRUD.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/services/UserCRUD.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/tests/MainTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/tests/MainTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/utils/MyConnection.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/edu/connection/utils/MyConnection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/build/classes/hireproproject/HireProProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/build/classes/hireproproject/HireProProject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/nbproject/build-impl.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/nbproject/genfiles.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/nbproject/private/private.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HirePro/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/nbproject/private/private.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HirePro/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/src/edu/connection/entities/EmailSender.java" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/entities/EmailSender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AddOffreFXML.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AddOffreFXML.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherOffre.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherOffre.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherOffreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherOffreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherPoste.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/HirePro/src/edu/connection/gui/AfficherPoste.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="dg4duuxr" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2QTHuqXui1veC60IveAbnuH3GaE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/roamsmart/Téléchargements/jar_files/mysql-connector-java-8.0.30.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/roamsmart/Téléchargements/jar_files/mysql-connector-java-8.0.30.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.MainTest">
     <configuration name="HireProProject" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hireproproject.HireProProject" />
@@ -116,5 +109,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

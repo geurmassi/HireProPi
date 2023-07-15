@@ -1,7 +1,4 @@
-
 package edu.connection.entities;
-
-
 
 import java.time.LocalDate;
 
@@ -10,6 +7,7 @@ import java.time.LocalDate;
  * @author ASUS
  */
 public class Offre {
+
     private int idOffre;
     private String jobHolder;
     private String lieuT;
@@ -21,12 +19,12 @@ public class Offre {
     private TypeEmploi typeEmploi;
     private TypeLieuTravail typeLieuTravail;
     private ReceptionOfApplication receptionOfApplication;
+    private int idUser;
 
-    
     public Offre() {
     }
 
-    public Offre(int idOffre, String jobHolder, String lieuT, String descriptif, String skills, String company, LocalDate dateDebutOffre, LocalDate dateFinOffre, TypeEmploi typeEmploi, TypeLieuTravail typeLieuTravail, ReceptionOfApplication receptionOfApplication){//, int idUser, int poste) {
+    public Offre(int idOffre, String jobHolder, String lieuT, String descriptif, String skills, String company, LocalDate dateDebutOffre, LocalDate dateFinOffre, TypeEmploi typeEmploi, TypeLieuTravail typeLieuTravail, ReceptionOfApplication receptionOfApplication, int idUser) {//, int poste) {
         this.idOffre = idOffre;
         this.jobHolder = jobHolder;
         this.lieuT = lieuT;
@@ -38,10 +36,11 @@ public class Offre {
         this.typeEmploi = typeEmploi;
         this.typeLieuTravail = typeLieuTravail;
         this.receptionOfApplication = receptionOfApplication;
-       // this.idUser = idUser;
+        this.idUser = idUser;
         //this.poste = poste;
     }
-    public Offre(String jobHolder, String lieuT, String descriptif, String skills, String company, LocalDate dateDebutOffre, LocalDate dateFinOffre, TypeEmploi typeEmploi, TypeLieuTravail typeLieuTravail, ReceptionOfApplication receptionOfApplication){//, int idUser, int poste) {
+
+    public Offre(String jobHolder, String lieuT, String descriptif, String skills, String company, LocalDate dateDebutOffre, LocalDate dateFinOffre, TypeEmploi typeEmploi, TypeLieuTravail typeLieuTravail, ReceptionOfApplication receptionOfApplication, int idUser) {//, int poste) {
         this.jobHolder = jobHolder;
         this.lieuT = lieuT;
         this.descriptif = descriptif;
@@ -52,9 +51,9 @@ public class Offre {
         this.typeEmploi = typeEmploi;
         this.typeLieuTravail = typeLieuTravail;
         this.receptionOfApplication = receptionOfApplication;
- 
-    }
+        this.idUser = idUser;
 
+    }
 
     @Override
     public int hashCode() {
@@ -80,22 +79,21 @@ public class Offre {
         }
         return true;
     }
-    
 
     @Override
     public String toString() {
-        return "Offre{" + "idOffre=" + idOffre + ", jobHolder=" + jobHolder + ", lieuT=" + lieuT + ", descriptif=" + descriptif + ", skills=" + skills + ", company=" + company + ", dateDebutOffre=" + dateDebutOffre + ", dateFinOffre=" + dateFinOffre + ", typeEmploi=" + typeEmploi + ", typeLieuTravail=" + typeLieuTravail + ", receptionOfApplication=" + receptionOfApplication +'}';
+        return "Offre{" + "idOffre=" + idOffre + ", jobHolder=" + jobHolder + ", lieuT=" + lieuT + ", descriptif=" + descriptif + ", skills=" + skills + ", company=" + company + ", dateDebutOffre=" + dateDebutOffre + ", dateFinOffre=" + dateFinOffre + ", typeEmploi=" + typeEmploi + ", typeLieuTravail=" + typeLieuTravail + ", receptionOfApplication=" + receptionOfApplication + ", idUser=" + idUser + '}';
     }
+
+ 
 
     public String getJobHolder() {
         return jobHolder;
     }
 
-    public void setJobHolder(String  jobHolder) {
+    public void setJobHolder(String jobHolder) {
         this.jobHolder = jobHolder;
     }
-    
-    
 
     public int getIdOffre() {
         return idOffre;
@@ -104,8 +102,6 @@ public class Offre {
     public void setIdOffre(int idOffre) {
         this.idOffre = idOffre;
     }
-
-
 
     public String getLieuT() {
         return lieuT;
@@ -179,9 +175,12 @@ public class Offre {
         this.receptionOfApplication = receptionOfApplication;
     }
 
-    
-    
-    
-    
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
 
 }

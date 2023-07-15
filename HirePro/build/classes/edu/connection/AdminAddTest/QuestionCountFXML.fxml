@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.AdminAddTest.QuestionCountFXMLController">
+    <BarChart fx:id="questionChart" prefHeight="400.0" prefWidth="600.0">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" label="Test ID"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" label="Question Count"/>
+        </yAxis>
+    </BarChart>
+</AnchorPane>

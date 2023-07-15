@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="461.0" prefWidth="678.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.gui.ReclamationFXMLController">
+   <children>
+      <TableView fx:id="tableaurec" layoutX="5.0" layoutY="43.0" prefHeight="203.0" prefWidth="672.0">
+        <columns>
+          <TableColumn fx:id="contenue" prefWidth="253.0" text="Contenue" />
+            <TableColumn fx:id="objet" prefWidth="109.0" text="Objet" />
+            <TableColumn fx:id="time" minWidth="0.0" prefWidth="103.0" text="Temps" />
+            <TableColumn fx:id="nomavecmail" prefWidth="208.0" text="Nom et mail" />
+            <TableColumn fx:id="idR" prefWidth="154.0" text="idR" visible="false" />
+            <TableColumn fx:id="idUser" prefWidth="114.0" text="idUser" visible="false" />
+            <TableColumn fx:id="idUserReclame" prefWidth="114.0" text="idUserReclame" visible="false" />
+            <TableColumn fx:id="etat" prefWidth="114.0" text="etat" visible="false" />
+        </columns>
+      </TableView>
+      <Label fx:id="lbcount" layoutX="31.0" layoutY="260.0" prefHeight="17.0" prefWidth="136.0" text="Total Reclamation :" textAlignment="CENTER" />
+      <Button layoutX="639.0" layoutY="256.0" mnemonicParsing="false" onAction="#CreationPdf" text="PDF" />
+      <Label fx:id="lbCon" layoutX="32.0" layoutY="281.0" prefHeight="96.0" prefWidth="539.0" text="Continue :" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="lbobj" layoutX="32.0" layoutY="377.0" prefHeight="41.0" prefWidth="539.0" text="Objet      :" wrapText="true" />
+      <Button fx:id="buttDesactiver" layoutX="438.0" layoutY="430.0" mnemonicParsing="false" onAction="#DesactiverAction" prefHeight="25.0" prefWidth="78.0" text="Désactiver" />
+      <Button fx:id="buttonrep" layoutX="554.0" layoutY="430.0" mnemonicParsing="false" onAction="#repondreAction" prefHeight="25.0" prefWidth="78.0" text="Répondre" />
+      <Button layoutX="32.0" layoutY="12.0" mnemonicParsing="false" onAction="#goRecVue" prefHeight="25.0" prefWidth="142.0" text="Les reclamation Vue" />
+      <Label fx:id="lbcount1" layoutX="233.0" layoutY="260.0" prefHeight="17.0" prefWidth="199.0" text="Total Reclamation non vue :" textAlignment="CENTER" />
+      <Button layoutX="199.0" layoutY="12.0" mnemonicParsing="false" onAction="#goRecIn" prefHeight="25.0" prefWidth="157.0" text="Les reclamation inactive" />
+   </children>
+</AnchorPane>

@@ -7,40 +7,31 @@ package edu.connection.gui;
 
 import edu.connection.entities.EmailSender;
 import edu.connection.entities.Offre;
-import edu.connection.entities.Poste;
 import edu.connection.entities.ReceptionOfApplication;
 import edu.connection.entities.TypeEmploi;
-import static edu.connection.entities.TypeEmploi.Stage;
 import edu.connection.entities.TypeLieuTravail;
 import edu.connection.services.OffreEmploiCrud;
 import edu.connection.utils.MyConnection;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -83,6 +74,26 @@ public class AddOffreFXMLController implements Initializable {
     @FXML
     private TextField tfIdOffre;
 
+    @FXML
+    private Label lbIdUser;
+    private MainController mainController;
+
+     public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+
+        if (mainController != null) {
+            mainController.loadMain("AfficherOffre.fxml");
+        }
+    }
+
+    public AddOffreFXMLController() {
+    }
+
+    public void setLabelIdUserValue(String value) {
+        System.out.println("Label Id User Value: " + value);
+        lbIdUser.setText(value);
+    }
+   
     // Setter method to set the selected Offre
     public void setOffre(Offre offre) {
         selectedOffre = offre;
@@ -98,7 +109,7 @@ public class AddOffreFXMLController implements Initializable {
         DStartDate.setValue(offre.getDateDebutOffre());
         DEndDate.setValue(offre.getDateFinOffre());
         tfIdOffre.setText(String.valueOf(offre.getIdOffre()));
-
+        lbIdUser.setText(String.valueOf(offre.getIdUser()));
 
     }
 
@@ -111,10 +122,7 @@ public class AddOffreFXMLController implements Initializable {
         // Update the existing Offre object with the updated values
         offre.setLieuT(updatedWorkplace);
         offre.setCompany(updatedCompany);
-        // Update other properties of the existing Offre object
-
-        // You can perform any necessary validations or additional processing here
-        // Save the updated Offre to the database or perform any necessary operations
+       
         OffreEmploiCrud impl = new OffreEmploiCrud();
         impl.modifier(offre);
     }
@@ -123,56 +131,11 @@ public class AddOffreFXMLController implements Initializable {
         this.primaryStage = primaryStage;
     }
 
-    @FXML
-    private void handlebtnManageoffres(ActionEvent event) {
-        // Load the AfficherOffre.fxml file
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherOffre.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            // Create a new stage for AfficherOffre and set the scene
-            Stage afficherOffreStage = new Stage();
-            afficherOffreStage.setScene(scene);
-            afficherOffreStage.setTitle("Manage Job Offres");
-
-            // Show the AfficherOffre stage
-            afficherOffreStage.show();
-
-            // Close the primary stage
-            primaryStage.close();
-        } catch (IOException ex) {
-            System.out.println("Error loading FXML file");
-            ex.printStackTrace();
-        }
-    }
-
-    private void handlebtnPost() {
-        // Load the AfficherOffre.fxml file
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AfficherOffre.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-
-            // Create a new stage for AfficherOffre and set the scene
-            Stage afficherOffreStage = new Stage();
-            afficherOffreStage.setScene(scene);
-            afficherOffreStage.setTitle("Afficher Offres");
-
-            // Show the AfficherOffre stage
-            afficherOffreStage.show();
-
-            // Close the primary stage
-            primaryStage.close();
-        } catch (IOException ex) {
-            System.out.println("Error loading FXML file");
-            ex.printStackTrace();
-        }
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Get the enum values
+        //lbIdUser.setText("LabelIdUser");
         btnPost.setVisible(true);
         btnConfirmUpdate.setVisible(false);
         ObservableList<TypeEmploi> typeEmploiList = FXCollections.observableArrayList(TypeEmploi.values());
@@ -203,7 +166,8 @@ public class AddOffreFXMLController implements Initializable {
 
     }
 
-    
+
+
     @FXML
     private void AddOffreFXML(ActionEvent event) {
         String jobHolder = (String) CBPoste.getSelectionModel().getSelectedItem();
@@ -216,6 +180,7 @@ public class AddOffreFXMLController implements Initializable {
         TypeEmploi typeEmploi = (TypeEmploi) CBTypeJob.getSelectionModel().getSelectedItem();
         TypeLieuTravail typeLieuTravail = (TypeLieuTravail) CBTypeWorkplace.getSelectionModel().getSelectedItem();
         ReceptionOfApplication receptionOfApplication = (ReceptionOfApplication) CBReception.getSelectionModel().getSelectedItem();
+        int idUser = Integer.parseInt(lbIdUser.getText());
 
         // Validate date fields
         if (dateDebutOffre == null || dateFinOffre == null) {
@@ -237,7 +202,8 @@ public class AddOffreFXMLController implements Initializable {
             return; // Exit the method if end date is before start date
         }
 
-        Offre O = new Offre(jobHolder, lieuT, descriptif, skills, company, dateDebutOffre, dateFinOffre, typeEmploi, typeLieuTravail, receptionOfApplication);
+        Offre O = new Offre(jobHolder, lieuT, descriptif, skills, company, dateDebutOffre, dateFinOffre, typeEmploi, typeLieuTravail, receptionOfApplication, idUser);
+        System.out.println(O.toString());
         OffreEmploiCrud Impl = new OffreEmploiCrud();
         Impl.addEntity(O);
 
@@ -246,7 +212,7 @@ public class AddOffreFXMLController implements Initializable {
 
         String subject = "New Job Offer";
         String message = "Dear Network,\n\nWe have a new job offer available. Please review the details below:\n\n"
-               /* + "Job Holder: " + O.getJobHolder() + "\n"
+                /* + "Job Holder: " + O.getJobHolder() + "\n"
                 + "Description: " + O.getDescriptif() + "\n"
                 + "Skills: " + O.getSkills() + "\n"
                 + "Company: " + O.getCompany() + "\n"
@@ -260,7 +226,7 @@ public class AddOffreFXMLController implements Initializable {
         for (String email : useremails) {
             emailSender.sendEmailToSAMU(email, subject, message, O);
         }
-         System.out.println("All emails have been sent successfully");
+        System.out.println("All emails have been sent successfully");
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
@@ -273,84 +239,94 @@ public class AddOffreFXMLController implements Initializable {
         tfDescription.setText("");
         tfSkills.setText("");
         tfCompany.setText("");
-        handlebtnPost();
+//        handlebtnPost();/*
+       /* if (mainController != null) {
+            mainController.loadMain("AfficherOffre.fxml");
+        } else {
+            System.out.println("MainController is null.");
+        }*/
     }
 
+    @FXML
+    private void handleConfirmUpdateButton(ActionEvent event) throws IOException {
+        String jobHolder = CBPoste.getValue();
+        String lieuT = tfWorkplace.getText();
+        String descriptif = tfDescription.getText();
+        String skills = tfSkills.getText();
+        String company = tfCompany.getText();
+        LocalDate dateDebutOffre = DStartDate.getValue();
+        LocalDate dateFinOffre = DEndDate.getValue();
+        TypeEmploi typeEmploi = CBTypeJob.getValue();
+        TypeLieuTravail typeLieuTravail = CBTypeWorkplace.getValue();
+        ReceptionOfApplication receptionOfApplication = CBReception.getValue();
+        int idUser = Integer.parseInt(lbIdUser.getText());
 
-   @FXML
-private void handleConfirmUpdateButton(ActionEvent event) throws IOException {
-    String jobHolder = CBPoste.getValue();
-    String lieuT = tfWorkplace.getText();
-    String descriptif = tfDescription.getText();
-    String skills = tfSkills.getText();
-    String company = tfCompany.getText();
-    LocalDate dateDebutOffre = DStartDate.getValue();
-    LocalDate dateFinOffre = DEndDate.getValue();
-    TypeEmploi typeEmploi = CBTypeJob.getValue();
-    TypeLieuTravail typeLieuTravail = CBTypeWorkplace.getValue();
-    ReceptionOfApplication receptionOfApplication = CBReception.getValue();
+        String idOffreString = tfIdOffre.getText();
+        if (idOffreString.isEmpty()) {
+            // Handle the case when the text field is empty
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please enter a valid ID.");
+            alert.showAndWait();
+            return; // Exit the method if the text field is empty
+        }
 
-    String idOffreString = tfIdOffre.getText();
-    if (idOffreString.isEmpty()) {
-        // Handle the case when the text field is empty
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("Invalid Input");
-        alert.setContentText("Please enter a valid ID.");
+        int idOffre;
+        try {
+            idOffre = Integer.parseInt(idOffreString);
+        } catch (NumberFormatException e) {
+            // Handle the case when the input cannot be parsed as an integer
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Input");
+            alert.setContentText("Please enter a valid ID.");
+            alert.showAndWait();
+            return; // Exit the method if the input cannot be parsed as an integer
+        }
+
+        // Validate date fields
+        if (dateDebutOffre == null || dateFinOffre == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Date");
+            alert.setContentText("Please select a valid start and end date.");
+            alert.showAndWait();
+            return; // Exit the method if dates are null
+        }
+
+        // Check if end date is before the start date
+        if (dateFinOffre.isBefore(dateDebutOffre)) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Invalid Date");
+            alert.setContentText("End date must be equal to or later than the start date.");
+            alert.showAndWait();
+            return; // Exit the method if end date is before start date
+        }
+
+        Offre O = new Offre(idOffre, jobHolder, lieuT, descriptif, skills, company, dateDebutOffre, dateFinOffre, typeEmploi, typeLieuTravail, receptionOfApplication, idUser);
+        System.out.println(O.toString());
+        OffreEmploiCrud Impl = new OffreEmploiCrud();
+
+        Impl.modifier(O);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("Offre Update");
+        alert.setContentText("The offre has been successfully Updated!");
         alert.showAndWait();
-        return; // Exit the method if the text field is empty
+
+        // Clear input fields
+        tfWorkplace.setText("");
+        tfDescription.setText("");
+        tfSkills.setText("");
+        tfCompany.setText("");
+//        handlebtnPost();
     }
 
-    int idOffre;
-    try {
-        idOffre = Integer.parseInt(idOffreString);
-    } catch (NumberFormatException e) {
-        // Handle the case when the input cannot be parsed as an integer
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("Invalid Input");
-        alert.setContentText("Please enter a valid ID.");
-        alert.showAndWait();
-        return; // Exit the method if the input cannot be parsed as an integer
+    @FXML
+    private void handlebtnManageoffres(ActionEvent event) {
     }
-
-    // Validate date fields
-    if (dateDebutOffre == null || dateFinOffre == null) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("Invalid Date");
-        alert.setContentText("Please select a valid start and end date.");
-        alert.showAndWait();
-        return; // Exit the method if dates are null
-    }
-
-    // Check if end date is before the start date
-    if (dateFinOffre.isBefore(dateDebutOffre)) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Error");
-        alert.setHeaderText("Invalid Date");
-        alert.setContentText("End date must be equal to or later than the start date.");
-        alert.showAndWait();
-        return; // Exit the method if end date is before start date
-    }
-
-    Offre O = new Offre(idOffre, jobHolder, lieuT, descriptif, skills, company, dateDebutOffre, dateFinOffre, typeEmploi, typeLieuTravail, receptionOfApplication);
-    OffreEmploiCrud Impl = new OffreEmploiCrud();
-
-    Impl.modifier(O);
-
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Success");
-    alert.setHeaderText("Offre Update");
-    alert.setContentText("The offre has been successfully Updated!");
-    alert.showAndWait();
-
-    // Clear input fields
-    tfWorkplace.setText("");
-    tfDescription.setText("");
-    tfSkills.setText("");
-    tfCompany.setText("");
-    handlebtnPost();
-}
 
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.connection.AdminAddTest.afficheDetailsController">
+   <children>
+      <TableView fx:id="listeQuestionTableview" layoutX="73.0" layoutY="46.0" prefHeight="472.0" prefWidth="785.0">
+        <columns>
+          <TableColumn fx:id="titreTableColumn" onEditCommit="#handleTitreTableColumnEdit" prefWidth="753.0" text="Test" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnClose" layoutX="729.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleCloseQuestion" prefHeight="53.0" prefWidth="150.0" text="Close">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

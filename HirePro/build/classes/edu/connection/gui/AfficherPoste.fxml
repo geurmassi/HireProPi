@@ -25,7 +25,7 @@
       <Pane layoutX="-1.0" layoutY="106.0" prefHeight="5.0" prefWidth="5.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" />
       <TableView fx:id="tableViewPostes" layoutX="6.0" layoutY="186.0" prefHeight="305.0" prefWidth="773.0">
         <columns>
-          <TableColumn fx:id="colIdPoste" prefWidth="75.0" text="ID_POSTE" />
+          <TableColumn fx:id="colIdPoste" prefWidth="75.0" text="ID_POSTE" visible="false" />
           <TableColumn fx:id="colPosteName" prefWidth="691.0" text="POSTE_NAME" />
         </columns>
       </TableView>

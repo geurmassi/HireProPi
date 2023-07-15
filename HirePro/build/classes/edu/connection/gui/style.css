@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26 juin 2023, 21:11:01
+    Author     : hadil ibenhajfraj
+*/
+
+/* Appliquer un style au VBox principal */
+VBox {
+    -fx-alignment: center;
+    -fx-spacing: 10;
+}
+
+/* Appliquer un style aux onglets du TabPane */
+.tab {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Appliquer un style aux Labels */
+.label {
+    -fx-font-size: 14px;
+}
+
+/* Appliquer un style aux TextFields */
+.text-field {
+    -fx-pref-width: 200px;
+    -fx-font-size: 14px;
+}
+
+/* Appliquer un style au TextArea */
+.text-area {
+    -fx-pref-width: 200px;
+    -fx-pref-height: 100px;
+    -fx-font-size: 14px;
+}
+
+/* Appliquer un style aux boutons */
+.button {
+    -fx-font-size: 14px;
+}
+
+/* Appliquer un style aux DatePicker */
+.date-picker {
+    -fx-pref-width: 200px;
+}
+
+/* Appliquer un style à l'image */
+.image-view {
+    -fx-pref-width: 24px;
+    -fx-pref-height: 24px;
+}
+
+/* Appliquer un style au bouton avec une image */
+.button .image-view {
+    -fx-padding: 4px;
+}
