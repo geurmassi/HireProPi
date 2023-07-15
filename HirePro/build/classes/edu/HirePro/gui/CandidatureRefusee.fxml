@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="673.0" prefWidth="994.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.HirePro.gui.CandidatureRefuseeController">
+   <children>
+      <Button layoutX="36.0" layoutY="10.0" mnemonicParsing="false" onAction="#candidatureAccepter" text="Condidature Acceptée" />
+      <Button layoutX="228.0" layoutY="10.0" mnemonicParsing="false" onAction="#condidatureEnattent" text="Condidature En Attente" />
+      <TableView fx:id="tableCan" layoutX="7.0" layoutY="106.0" prefHeight="200.0" prefWidth="980.0" visible="false">
+        <columns>
+            <TableColumn fx:id="colPoste" prefWidth="176.0" text="Poste" />
+          <TableColumn fx:id="colCv" prefWidth="119.0" text="Cv" />
+          <TableColumn fx:id="colLm" prefWidth="213.0" text="Lettre de Motivation" />
+            <TableColumn fx:id="colPor" prefWidth="107.0" text="Portfilio" />
+            <TableColumn fx:id="colDate" prefWidth="165.0" text="Date de candidature" />
+            <TableColumn fx:id="colNom" prefWidth="199.0" text="Nom et Prénom" />
+        </columns>
+      </TableView>
+      <Label fx:id="lbNom" layoutX="48.0" layoutY="347.0" prefHeight="21.0" prefWidth="703.0" text="Nom et Prénom        :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbCv" layoutX="48.0" layoutY="391.0" prefHeight="21.0" prefWidth="703.0" text="Cv                              :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbLm" layoutX="48.0" layoutY="438.0" prefHeight="21.0" prefWidth="703.0" text="Lettre de Motivation :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbPor" layoutX="48.0" layoutY="484.0" prefHeight="21.0" prefWidth="703.0" text="Portfilio                     :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbPoste" layoutX="48.0" layoutY="534.0" prefHeight="21.0" prefWidth="703.0" text="Poste                         :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbDate" layoutX="48.0" layoutY="581.0" prefHeight="21.0" prefWidth="703.0" text="Date de condidature :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <Label fx:id="lbEtat" layoutX="48.0" layoutY="634.0" prefHeight="21.0" prefWidth="703.0" text="Etat                              :" textFill="#3c28f5" visible="false">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+         <effect>
+            <Reflection />
+         </effect></Label>
+      <ComboBox fx:id="comboEtat" layoutX="207.0" layoutY="629.0" prefWidth="150.0" promptText="En Attente" visible="false" />
+      <Button fx:id="btApplay" layoutX="883.0" layoutY="576.0" mnemonicParsing="false" onAction="#updateEtat" text="Applay" visible="false" />
+      <Button fx:id="evalButton" layoutX="882.0" layoutY="327.0" mnemonicParsing="false" onAction="#evaluerAction" text="Evaluer" visible="false" />
+      <Label fx:id="iduser" layoutX="948.0" layoutY="639.0" text="Label" visible="false" />
+      <Label alignment="CENTER" contentDisplay="TOP" ellipsisString="5555" graphicTextGap="2525.0" layoutX="405.0" layoutY="10.0" lineSpacing="20.0" prefHeight="31.0" prefWidth="159.0" text="Choisir Votre Offre" textFill="#3c28f5" textOverrun="WORD_ELLIPSIS">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Reflection />
+         </effect>
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="comboBoxOffre" layoutX="588.0" layoutY="10.0" prefHeight="31.0" prefWidth="367.0" promptText="Votre Offre" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="994.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.HirePro.gui.AfficheOffreEtPosteController">
+   <children>
+      <TableView fx:id="tableFP" layoutX="40.0" layoutY="33.0" prefHeight="359.0" prefWidth="831.0">
+        <columns>
+          <TableColumn fx:id="idOffre" prefWidth="75.0" text="id offre" />
+          <TableColumn fx:id="lieuT" prefWidth="99.0" text="Lieu Travail" />
+            <TableColumn fx:id="descriptif" prefWidth="82.0" text="Descriptif" />
+            <TableColumn fx:id="dateDebutOffre" prefWidth="104.0" text="Date Debut" />
+            <TableColumn fx:id="dateFinOffre" prefWidth="93.0" text="Date Fin" />
+            <TableColumn fx:id="typeEmploi" prefWidth="110.0" text="Type d'emploi" />
+            <TableColumn fx:id="TypeLieuTravail" prefWidth="134.0" text="Type Lieu Travail" />
+            <TableColumn fx:id="idUser" prefWidth="67.0" text="id User " />
+            <TableColumn fx:id="idposte" prefWidth="67.0" text="id Poste" />
+            <TableColumn fx:id="question" prefWidth="74.0" text="question " visible="false" />
+        </columns>
+      </TableView>
+      <Label fx:id="idoffrechoisistring" layoutX="55.0" layoutY="601.0" prefHeight="21.0" prefWidth="138.0" />
+      <Label fx:id="lbname" layoutX="221.0" layoutY="612.0" prefHeight="21.0" prefWidth="138.0" visible="false" />
+      <Label fx:id="lbiduser" layoutX="462.0" layoutY="552.0" text="Label" visible="false" />
+   </children>
+</AnchorPane>

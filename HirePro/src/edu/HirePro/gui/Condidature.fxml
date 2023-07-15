@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="1261.0" prefWidth="1935.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.HirePro.gui.CondidatureController">
+   <children>
+      <TableView fx:id="tbcan" layoutX="25.0" layoutY="22.0" prefHeight="324.0" prefWidth="867.0">
+        <columns>
+          <TableColumn fx:id="tcIdc" prefWidth="95.0" text="id Condidature" visible="false" />
+          <TableColumn fx:id="tcCv" minWidth="0.0" prefWidth="114.0" text="CV" />
+            <TableColumn fx:id="tcLm" minWidth="0.0" prefWidth="152.0" text="Lettre de motivation" />
+            <TableColumn fx:id="tcP" minWidth="0.0" prefWidth="168.0" text="Portfilio" />
+            <TableColumn fx:id="tcD" minWidth="0.0" prefWidth="137.0" text="Date Candidature" />
+            <TableColumn fx:id="tcOfferName" minWidth="0.0" prefWidth="162.0" text="Poste de l'offre" />
+            <TableColumn fx:id="tcUserName" minWidth="0.0" prefWidth="132.0" text="Nom Utilisateur" />
+            <TableColumn fx:id="tcO" minWidth="0.0" prefWidth="142.0" text="Offre" visible="false" />
+            <TableColumn fx:id="tcU" minWidth="0.0" prefWidth="29.0" text="Utilisateur" visible="false" />
+        </columns>
+      </TableView>
+      <Button layoutX="802.0" layoutY="373.0" mnemonicParsing="false" onAction="#crationPdfAction" prefHeight="31.0" prefWidth="90.0" text="PDF" />
+      <Button layoutX="520.0" layoutY="373.0" mnemonicParsing="false" onAction="#goStatistique" text="Statistique" />
+      <Label fx:id="lbCount" layoutX="32.0" layoutY="367.0" text="label" />
+   </children>
+   <effect>
+      <Blend />
+   </effect>
+</AnchorPane>
