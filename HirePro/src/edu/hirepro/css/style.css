@@ -1,0 +1,15 @@
+body {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.main-section {
+  background-color: black;
+  padding: 20px;
+}
+
+.frame {
+  background-color: black;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: white;
+}
